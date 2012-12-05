@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{{ meta.title }}</title>
+    </head>
+    <body>
+        <header>
+            <h1>{{ meta.title }}</h1>
+            <h2>{{ meta.subtitle }}</h2>
+        </header>
+        <nav>
+            <ul>
+                {% for section in sections %}
+                    <li>
+                        <a href="#{{ section.slug }}">
+                            <span class="middler">
+                                <span class="centerer">
+                                    <span class="rotator">
+                                        {{ section.shortname }}
+                                    </span>
+                                </span>
+                            </span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+        {% for section in sections %}
+            <section id="{{ section.slug }}">
+                <h1>{{ section.name }}</h1>
+                <p>{{ section.content }}</p>
+            </section>
+        {% endfor %}
+    </body>
+</html>
