@@ -29,6 +29,16 @@
             <section id="{{ section.slug }}">
                 <h1>{{ section.name }}</h1>
                 <p>{{ section.content }}</p>
+                {% if section.list %}
+                    <ul class="{{ section.list.type }}">
+                        {% for project in section.list.projects %}
+                            <li>
+                                <h2>{{ project.title }}</h2>
+                                <p>{{ project.content }}</h2>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
             </section>
         {% endfor %}
     </body>
