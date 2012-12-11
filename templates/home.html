@@ -24,10 +24,17 @@
         <![endif]-->
 
         <header>
-            <h1>{{ meta.title }}</h1>
-            <h2>{{ meta.subtitle }}</h2>
+            <hgroup>
+                <h1>{{ meta.title }}</h1>
+                <h2>{{ meta.subtitle }}</h2>
+            </hgroup>
             <nav>
                 <ul>
+                    <li class="top">
+                        <a href="#">
+                            <span class="middler">^</span>
+                        </a>
+                    </li>
                     {% for section in sections %}
                         <li>
                             <a href="#{{ section.slug }}">

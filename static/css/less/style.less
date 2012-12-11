@@ -4,12 +4,15 @@
 @nav-back: rgba(0, 0, 0, 0.5);
 
 // Dimensions
+@base-font: 16px;
+@intermediate: 480;
+@wide: 768;
+@maximal: 1140;
 @right-nav: 3em;
 @top-nav: 4em;
 
 // Mixins
-.inset (@fg, @bg) {
-    color: @fg;
+.inset (@bg) {
     text-shadow: 1px 1px 0 @bg;
 }
 .rotate (@angle) {
@@ -20,6 +23,24 @@
     -webkit-transform: rotate(@angle);  /* Saf3.1+ */
     transform: rotate(@angle);  /* Newer browsers (incl IE9) */
 }
+.vgradient (@g1c, @g2c, @g2p, @g3c, @g3p, @g4c) {
+    background-image: linear-gradient(bottom, @g1c 100%, @g2c @g2p, @g3c @g3p, @g4c 0);
+    background-image: -o-linear-gradient(bottom, @g1c 100%, @g2c @g2p, @g3c @g3p, @g4c 0);
+    background-image: -moz-linear-gradient(bottom, @g1c 100%, @g2c @g2p, @g3c @g3p, @g4c 0);
+    background-image: -webkit-linear-gradient(bottom, @g1c 100%, @g2c @g2p, @g3c @g3p, @g4c 0);
+    background-image: -ms-linear-gradient(bottom, @g1c 100%, @g2c @g2p, @g3c @g3p, @g4c 0);
+
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(1, @g1c),
+        color-stop(@g2p, @g2c),
+        color-stop(@g3p, @g3c),
+        color-stop(0, @g4c)
+    );
+}
+
 
 /* ==========================================================================
    HTML5 Boilerplate styles - h5bp.com (generated via initializr.com)
@@ -34,7 +55,7 @@ textarea {
 }
 
 body {
-    font-size: 1em;
+    font-size: @base-font;
     line-height: 1.4;
 }
 
@@ -93,14 +114,19 @@ body {
    ============== */
 
 header {
-    padding: 1em 0 0;
+    padding: 2em 0 0;
     background: @orange;
+
+    hgroup {
+        padding: 13em 0.5em 1em;
+        background: url('/static/img/ewb-bulb.svg') 50% top no-repeat;
+    }
 
     h1 {
         text-align: center;
-        .inset(#fff, @text);
         margin: 1em 0.1em 0.5em;
         line-height: 1.2em;
+        color: white;
     }
     h2 {
         text-align: center;
@@ -115,6 +141,10 @@ nav {
     ul {
         margin: 0;
         padding: 0;
+    }
+
+    .top {
+        display: none;
     }
 
     a {
@@ -169,25 +199,29 @@ section {
    Media Queries
    ========================================================================== */
 
-@media only screen and (min-width: 480px) {
+@media only screen and (min-width: ~"@{intermediate}px") {
 
 /* ====================
     INTERMEDIATE
    ==================== */
-    h1 {
-        margin-top: 2em;
-    }
     header {
-        padding: 6em 1em 2em;
+        h1 {
+            .inset(@text);
+        }
+    }
+    hgroup {
+        padding: 5em 1em 2em;
     }
     nav {
-        position: fixed;
-        top: 0;
-        right: 0;
         width: 100%;
         height: @top-nav;
         line-height: @top-nav;
         background: @nav-back;
+        &.fixtop {
+            position: fixed;
+            top: 0;
+            right: 0;
+        }
 
         a {
             margin: 0;
@@ -196,6 +230,12 @@ section {
             width: 20%;
             float: left;
             border: none;
+            &:hover {
+                background: @nav-back;
+            }
+        }
+        li:first-child a {
+            width:8%;
         }
 
     }
@@ -203,7 +243,7 @@ section {
 
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: ~"@{wide}px") {
 
 /* ====================
     WIDE: CSS3 Effects
@@ -221,7 +261,13 @@ section {
    ============ */
 
     header {
-        padding: 2em @right-nav+1em 0.5em 1em;
+        padding: 6em @right-nav+1em 2em 1em;
+        .vgradient(
+            lighten(@orange, 16%),
+            @orange, 42%,
+            @orange, 10%,
+            darken(@orange, 7%)
+        );
     }
 
     nav {
@@ -232,24 +278,31 @@ section {
         height: 100%;
         width: @right-nav;
 
+
+        .top {
+            display: block;
+        }
+
         a {
             display: block;
             position: absolute;
             right: 0;
-            height: 20%;
+            height: 18%;
             width: @right-nav;
             border: none;
             overflow: hidden;
-            &:hover {
-                background: @nav-back;
-            }
         }
         li {
-            &:nth-child(1) a {top: 0;}
-            &:nth-child(2) a {top: 20%;}
-            &:nth-child(3) a {top: 40%;}
-            &:nth-child(4) a {top: 60%;}
-            &:nth-child(5) a {top: 80%;}
+            &:nth-child(1) a {
+                top: 1%;
+                height: 8%;
+                width: 3em;
+            }
+            &:nth-child(2) a {top: 9%;}
+            &:nth-child(3) a {top: 27%;}
+            &:nth-child(4) a {top: 45%;}
+            &:nth-child(5) a {top: 63%;}
+            &:nth-child(6) a {top: 81%;}
         }
         .middler {
             position:absolute;
@@ -288,15 +341,16 @@ section {
     }
 }
 
-@media only screen and (min-width: 1140px) {
+@media only screen and (min-width: ~"@{maximal}px") {
 
 /* ===============
     Maximal Width
    =============== */
 
-    .wrapper {
-        width: 1026px; /* 1140px - 10% for margins */
+    section {
+        width: @maximal + 0px - (@base-font * 5);
         margin: 0 auto;
+        padding: 1em @right-nav 0 0;
     }
 }
 
