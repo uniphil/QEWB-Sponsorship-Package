@@ -15,6 +15,11 @@
 .inset (@bg) {
     text-shadow: 1px 1px 0 @bg;
 }
+.box-shadow (@shadow...) {
+    -webkit-box-shadow: @shadow; 
+    -moz-box-shadow: @shadow;
+    box-shadow: @shadow;
+}
 .rotate (@angle) {
     display: block;
     position: relative;
@@ -115,7 +120,8 @@ body {
 
 header {
     padding: 2em 0 0;
-    background: @orange;
+    background-color: @orange;
+    background-image: url('/static/img/head-grid.svg');
 
     hgroup {
         padding: 13em 0.5em 1em;
@@ -208,6 +214,9 @@ section {
         h1 {
             .inset(@text);
         }
+        h2 {
+            text-shadow: 0 0 0.5em rgba(255, 255, 255, 0.667);
+        }
     }
     hgroup {
         padding: 5em 1em 2em;
@@ -261,13 +270,19 @@ section {
    ============ */
 
     header {
-        padding: 6em @right-nav+1em 2em 1em;
-        .vgradient(
-            lighten(@orange, 16%),
-            @orange, 42%,
-            @orange, 10%,
-            darken(@orange, 7%)
-        );
+        padding: 6em 0 0; //@right-nav+1em 2em 1em;
+        //.vgradient(
+         //   lighten(@orange, 16%),
+          //  @orange, 42%,
+          //  @orange, 10%,
+          //  darken(@orange, 7%)
+        //);
+        border-bottom: 0.3em solid lighten(@orange, 25%);
+        .box-shadow(inset 0 1em 4em -1em rgba(255, 255, 255, 0.4));
+    }
+    hgroup {
+        margin-right: @right-nav;
+        box-shadow: inset 0 -3em 3em -3em rgba(0, 0, 0, 0.3);
     }
 
     nav {
