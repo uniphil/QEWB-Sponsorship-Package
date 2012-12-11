@@ -5,6 +5,7 @@
 
 // Dimensions
 @right-nav: 3em;
+@top-nav: 4em;
 
 // Mixins
 .inset (@fg, @bg) {
@@ -173,6 +174,51 @@ section {
 /* ====================
     INTERMEDIATE
    ==================== */
+    h1 {
+        margin-top: 2em;
+    }
+    header {
+        padding: 6em 1em 2em;
+    }
+    nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: @top-nav;
+        line-height: @top-nav;
+        background: @nav-back;
+
+        a {
+            margin: 0;
+            padding: 0;
+            display: block;
+            width: 20%;
+            float: left;
+            border: none;
+        }
+
+    }
+
+
+}
+
+@media only screen and (min-width: 768px) {
+
+/* ====================
+    WIDE: CSS3 Effects
+   ==================== */
+
+    .header-container,
+    .main aside {
+        -webkit-box-shadow: 0 5px 10px #aaa;
+           -moz-box-shadow: 0 5px 10px #aaa;
+                box-shadow: 0 5px 10px #aaa;
+    }
+
+/* ============
+    WIDE: Menu
+   ============ */
 
     header {
         padding: 2em @right-nav+1em 0.5em 1em;
@@ -183,8 +229,8 @@ section {
         top: 0;
         right: 0;
         bottom: 0;
+        height: 100%;
         width: @right-nav;
-        background: @nav-back;
 
         a {
             display: block;
@@ -225,25 +271,6 @@ section {
     section {
         padding: 1em @right-nav+1em 1em 1em;
     }
-}
-
-@media only screen and (min-width: 768px) {
-
-/* ====================
-    WIDE: CSS3 Effects
-   ==================== */
-
-    .header-container,
-    .main aside {
-        -webkit-box-shadow: 0 5px 10px #aaa;
-           -moz-box-shadow: 0 5px 10px #aaa;
-                box-shadow: 0 5px 10px #aaa;
-    }
-
-/* ============
-    WIDE: Menu
-   ============ */
-
 
 
 /* ============
