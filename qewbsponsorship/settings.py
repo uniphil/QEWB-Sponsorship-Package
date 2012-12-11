@@ -1,6 +1,6 @@
 # Django settings for qewbsponsorship project.
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -78,7 +78,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'h%3rqw#c_heheheo2(^swll!e1hohohoho&amp;41#2ez#qhahahahaf$8wum0#-gbc7x+o)t%n%'
+SECRET_KEY = ';alskdjkdjfplease make sure this is changed on the live local_settingsa;lksjdff'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -106,7 +106,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/Users/uber/qewbsponsorship/templates',
+    '',
 )
 
 INSTALLED_APPS = (
@@ -152,3 +152,8 @@ LOGGING = {
         },
     }
 }
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
