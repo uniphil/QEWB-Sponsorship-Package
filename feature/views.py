@@ -12,6 +12,7 @@ def home(request):
                 'name': 'Who We Are',
                 'shortname': 'About',
                 'slug': 'who-we-are',
+                'photo': '/static/img/change-leader.jpg',
                 'content': 'The Queen\'s chapter of Engineers Without Borders is part of a 3000 member national organization that spans over 36 university campuses and professional networks across Canada.  We are a group of multidisciplinary students that are passionate about global change to increase opportunities for rural African by alleviating social and economical inequalities.',
             },
             {

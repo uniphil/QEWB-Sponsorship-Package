@@ -25,7 +25,10 @@
 
         <header>
             <hgroup>
-                <h1>{{ meta.title }}</h1>
+                <h1>
+                    <img src="{% static 'img/bulb.svg' %}" alt="EWB Lightbulb Logo" />
+                    {{ meta.title }}
+                </h1>
                 <h2>{{ meta.subtitle }}</h2>
             </hgroup>
             <nav>
@@ -51,18 +54,24 @@
         </header>
         {% for section in sections %}
             <section id="{{ section.slug }}">
-                <h1>{{ section.name }}</h1>
-                <p>{{ section.content }}</p>
-                {% if section.list %}
-                    <ul class="{{ section.list.type }}">
-                        {% for project in section.list.projects %}
-                            <li>
-                                <h2>{{ project.title }}</h2>
-                                <p>{{ project.content }}</h2>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+                <div class="container">
+                    <h1>{{ section.name }}</h1>
+                    <p>{{ section.content }}</p>
+                    {% if section.photo %}
+                        <img src="{{ section.photo }}" />
+                    {% endif %}
+                    {% if section.list %}
+                        <ul class="{{ section.list.type }}">
+                            {% for project in section.list.projects %}
+                                <li>
+                                    <h2>{{ project.title }}</h2>
+                                    <p>{{ project.content }}</h2>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <div class="clearfix"></div>
             </section>
         {% endfor %}
 

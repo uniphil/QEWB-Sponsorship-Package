@@ -2,6 +2,8 @@
 @text: #222;
 @orange: #f60;
 @nav-back: rgba(0, 0, 0, 0.5);
+@light-gray: #eee;
+@dark-gray: #333;
 
 // Dimensions
 @base-font: 16px;
@@ -45,6 +47,11 @@
         color-stop(0, @g4c)
     );
 }
+.border-box {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
 
 /* ==========================================================================
@@ -62,6 +69,7 @@ textarea {
 body {
     font-size: @base-font;
     line-height: 1.4;
+    background: @orange url('/static/img/head-grid.svg') fixed;
 }
 
 ::selection,
@@ -100,7 +108,7 @@ textarea {
 
 .chromeframe {
     margin: 0.2em 0;
-    background: @orange;
+    background: lighten(@orange, 20%);
     color: #000;
     padding: 0.2em 0;
 }
@@ -119,15 +127,16 @@ body {
    ============== */
 
 header {
-    padding: 2em 0 0;
-    background-color: @orange;
-    background-image: url('/static/img/head-grid.svg');
+    border-bottom: 0.3em solid lighten(@orange, 25%);
 
     hgroup {
-        padding: 13em 0.5em 1em;
-        background: url('/static/img/ewb-bulb.svg') 50% top no-repeat;
+        padding: 1em 0.5em 1em;
+        //background: url('/static/img/ewb-bulb.svg') 50% top no-repeat;
     }
-
+    img {
+        display:block;
+        margin: 0 auto 2rem;
+    }
     h1 {
         text-align: center;
         margin: 1em 0.1em 0.5em;
@@ -163,7 +172,7 @@ nav {
         font-weight: bold;
 
         color: white;
-        border-top: 0.1em solid white;
+        border-top: 0.1em solid lighten(@orange, 25%);
 
         &:hover,
         &:visited {
@@ -179,12 +188,33 @@ nav {
     MOBILE: Main
    ============== */
 
-section {
+.container {
     padding: 1em;
 
     h1 {
         font-size: 2em;
+        text-align: center;
     }
+
+    img {
+        .border-box;
+        border: 0.3em solid white;
+        border-radius: 0.3em;
+        box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+        width: 100%;
+    }
+}
+
+#who-we-are {
+    padding-bottom: 2em;
+    background: @light-gray;
+    border-bottom: 2px solid fade(darken(@light-gray, 20%), 50%);
+}
+
+#what-we-do {
+    background: white;
+    //background: @dark-gray url('http://philipschleihauf.ca/Hotlinked/2012/canvas/thanks/thanks.png');
+    //color: white;
 }
 
 
@@ -212,20 +242,24 @@ section {
    ==================== */
     header {
         h1 {
-            .inset(@text);
+            color: white;
+            .inset(darken(@orange, 20%));
         }
         h2 {
             text-shadow: 0 0 0.5em rgba(255, 255, 255, 0.667);
         }
+        border-bottom: 0;
     }
     hgroup {
-        padding: 5em 1em 2em;
+        padding: 5em 1em 4em;
     }
     nav {
         width: 100%;
         height: @top-nav;
         line-height: @top-nav;
         background: @nav-back;
+        border-bottom: 0.3em solid darken(@orange, 36%);
+
         &.fixtop {
             position: fixed;
             top: 0;
@@ -249,7 +283,30 @@ section {
 
     }
 
+    .container {
+        padding: 1em;
 
+        h1 {
+            margin: 1em 0 2em;
+        }
+        p {
+            padding: 0;
+        }
+    }
+
+    #who-we-are {
+        padding-bottom: 4em;
+        p {
+            margin: 0;
+            display: block;
+            float:left;
+            width:48%;
+            margin-right:4%;
+        }
+        img {
+            width: 48%;
+        }
+    }
 }
 
 @media only screen and (min-width: ~"@{wide}px") {
@@ -258,31 +315,18 @@ section {
     WIDE: CSS3 Effects
    ==================== */
 
-    .header-container,
-    .main aside {
-        -webkit-box-shadow: 0 5px 10px #aaa;
-           -moz-box-shadow: 0 5px 10px #aaa;
-                box-shadow: 0 5px 10px #aaa;
-    }
-
-/* ============
-    WIDE: Menu
-   ============ */
-
     header {
-        padding: 6em 0 0; //@right-nav+1em 2em 1em;
-        //.vgradient(
-         //   lighten(@orange, 16%),
-          //  @orange, 42%,
-          //  @orange, 10%,
-          //  darken(@orange, 7%)
-        //);
-        border-bottom: 0.3em solid lighten(@orange, 25%);
+        padding: 0; //@right-nav+1em 2em 1em;
         .box-shadow(inset 0 1em 4em -1em rgba(255, 255, 255, 0.4));
-    }
-    hgroup {
-        margin-right: @right-nav;
-        box-shadow: inset 0 -3em 3em -3em rgba(0, 0, 0, 0.3);
+
+        hgroup {
+            padding: 3em 0 2em;
+            margin-right: @right-nav;
+            box-shadow: inset 0 -3em 3em -3em rgba(0, 0, 0, 0.3);
+        }
+        img {
+            margin-bottom: 4rem;
+        }
     }
 
     nav {
@@ -336,24 +380,43 @@ section {
         }
     }
 
-    section {
+    .container {
         padding: 1em @right-nav+1em 1em 1em;
+
+        h1 {
+            margin: 2em 0;
+        }
     }
 
+    #who-we-are {
+        padding-bottom: 0.2em;
+        border-bottom: 0; //-color: white;
 
-/* ============
-    WIDE: Main
-   ============ */
+        .container {
+            padding-bottom: 0;
+        }
 
-    .main article {
-        float: left;
-        width: 57%;
+        p {
+            width: 100%;
+        }
+        img {
+            display:none;
+        }
+        
+        .clearfix {
+            margin-top: 7em;
+            display: block;
+            width: 100%;
+            height: 27em;
+            background: url('/static/img/us.jpg') 50% top;
+            background-size: cover;
+        }
     }
 
-    .main aside {
-        float: right;
-        width: 28%;
+    #what-we-do {
+        box-shadow: inset 0 2em 2em -2em rgba(0, 0, 0, 0.5);
     }
+
 }
 
 @media only screen and (min-width: ~"@{maximal}px") {
@@ -361,8 +424,8 @@ section {
 /* ===============
     Maximal Width
    =============== */
-
-    section {
+    
+    .container {
         width: @maximal + 0px - (@base-font * 5);
         margin: 0 auto;
         padding: 1em @right-nav 0 0;
