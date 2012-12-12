@@ -52,6 +52,12 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+.transition (@trans...) {
+    -webkit-transition: @trans;
+    -moz-transition: @trans;
+    -o-transition: @trans;
+    transition: @trans;
+}
 
 
 /* ==========================================================================
@@ -69,7 +75,7 @@ textarea {
 body {
     font-size: @base-font;
     line-height: 1.4;
-    background: @orange url('/static/img/head-grid.svg') fixed;
+    background: @orange url('/static/img/head-grid.svg');
 }
 
 ::selection,
@@ -212,9 +218,52 @@ nav {
 }
 
 #what-we-do {
-    background: white url('/static/img/head-grid-dark.svg') fixed;
+    background: white url('/static/img/head-grid-dark.svg');
     //background: @dark-gray url('http://philipschleihauf.ca/Hotlinked/2012/canvas/thanks/thanks.png');
     //color: white;
+}
+
+.slider,
+.slider li {
+    padding: 0;
+    list-style-type: none;
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+.no-js .slider {
+    h2 {
+        margin: 1.5em 0 0.5em;
+    }
+}
+.js .slider {
+    li {
+        background: fade(@dark-gray, 20%);
+        border-bottom: 1px solid fade(@light-gray, 50%);
+    }
+    a {
+        background: fade(@dark-gray, 60%);
+        display: block;
+        padding: 0.5em 0 0.4em;
+    }
+    h2 {
+        margin: 0;
+        font-size: 1.2rem;
+        line-height: 1.1rem;
+        text-align: center;
+        color: white;
+    }
+    article {
+        padding: 0 1em;
+        max-height: 0;
+        overflow: hidden;
+        .transition(max-height 0.5s ease);
+    }
+    .show article {
+        max-height: 120em;
+        .transition(max-height 1s linear);
+    }
 }
 
 
@@ -275,8 +324,8 @@ nav {
             border: none;
             &:hover {
                 background: @nav-back;
-                -webkit-transition: all 0.3s ease;
-                transition: all 1s linear;
+                .transition(background 0.3s ease);
+                text-shadow: 0 0 0.667em black;
             }
         }
         li:first-child a {
