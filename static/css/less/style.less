@@ -212,7 +212,7 @@ nav {
 }
 
 #what-we-do {
-    background: white;
+    background: white url('/static/img/head-grid-dark.svg') fixed;
     //background: @dark-gray url('http://philipschleihauf.ca/Hotlinked/2012/canvas/thanks/thanks.png');
     //color: white;
 }
@@ -275,6 +275,8 @@ nav {
             border: none;
             &:hover {
                 background: @nav-back;
+                -webkit-transition: all 0.3s ease;
+                transition: all 1s linear;
             }
         }
         li:first-child a {
@@ -390,6 +392,8 @@ nav {
 
     #who-we-are {
         padding-bottom: 0.2em;
+        border-top: 2px solid white;
+        box-shadow: inset 0 0.5em 0.5em -0.5em rgba(0, 0, 0, 0.1);
         border-bottom: 0; //-color: white;
 
         .container {
