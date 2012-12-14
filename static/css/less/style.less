@@ -242,17 +242,17 @@ nav {
         background: fade(@dark-gray, 20%);
         border-bottom: 1px solid fade(@light-gray, 50%);
     }
-    a {
-        background: fade(@dark-gray, 60%);
-        display: block;
-        padding: 0.5em 0 0.4em;
-    }
     h2 {
         margin: 0;
-        font-size: 1.2rem;
-        line-height: 1.1rem;
         text-align: center;
         color: white;
+        background: fade(@dark-gray, 60%);
+    }
+    a {
+        font-size: 1.2rem;
+        line-height: 1.2rem;
+        display: block;
+        padding: 0.5rem 0 0.4rem;
     }
     article {
         padding: 0 1em;
@@ -334,6 +334,22 @@ nav {
 
     }
 
+    .middler {
+        position:absolute;
+        display:block;
+        top: 50%;
+        left: 50%;
+        height: @right-nav;
+        line-height: @right-nav;
+        margin-top: -@right-nav / 2;
+        width: 32em;
+        margin-left: -32em / 2;
+        text-align: center;
+    }
+    .rotator {
+        .rotate(90deg);
+    }
+
     .container {
         padding: 1em;
 
@@ -356,6 +372,37 @@ nav {
         }
         img {
             width: 48%;
+        }
+    }
+
+    #what-we-do {
+        .slider {
+            height: 32rem;
+            li {
+                border-bottom: 0;
+            }
+            h2 {
+                position: relative;
+                display: block;
+                width: 2.1rem;
+                height: 32rem;
+                float: left;
+                border-left: 1px solid fade(@light-gray, 50%);
+            }
+            .middler {
+                text-align: left;
+                width: 32rem;
+            }
+            article {
+                display: block;
+                float: left;
+                max-width: 0;
+                height: 32rem;
+            }
+            .show article {
+                max-width: 18em;
+                height: 32rem;
+            }
         }
     }
 }
@@ -413,21 +460,6 @@ nav {
             &:nth-child(4) a {top: 45%;}
             &:nth-child(5) a {top: 63%;}
             &:nth-child(6) a {top: 81%;}
-        }
-        .middler {
-            position:absolute;
-            display:block;
-            top: 50%;
-            left: 50%;
-            height: @right-nav;
-            line-height: @right-nav;
-            margin-top: -@right-nav / 2;
-            width: 32em;
-            margin-left: -32em / 2;
-            text-align: center;
-        }
-        .rotator {
-            .rotate(90deg);
         }
     }
 

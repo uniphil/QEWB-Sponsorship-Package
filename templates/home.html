@@ -64,7 +64,13 @@
                         <ul class="{{ section.list.type }}">
                             {% for project in section.list.projects %}
                                 <li id="{{ project.slug }}">
-                                    <h2><a href="#{{ project.slug }}">{{ project.title }}</a></h2>
+                                    <h2>
+                                        <a href="#{{ project.slug }}">
+                                            <span class="middler">
+                                                <span class="rotator">{{ project.title }}</span>
+                                            </span>
+                                        </a>
+                                    </h2>
                                     <article>
                                         <p>{{ project.content|safe }}</p>
                                     </article>
