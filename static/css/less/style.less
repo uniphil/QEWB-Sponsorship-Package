@@ -1,6 +1,7 @@
 // Colours
 @text: #222;
-@orange: #f60;
+@orange: #f90;
+@blue: #ace;
 @nav-back: rgba(0, 0, 0, 0.5);
 @light-gray: #eee;
 @dark-gray: #333;
@@ -221,6 +222,22 @@ nav {
     background: white url('/static/img/head-grid-dark.svg');
     //background: @dark-gray url('http://philipschleihauf.ca/Hotlinked/2012/canvas/thanks/thanks.png');
     //color: white;
+    border-bottom: 0.2em dotted @blue;
+}
+
+#events {
+    background: @blue;
+    border-top: 0.2em dotted white;
+}
+
+#budget {
+    color: white;
+    background: @dark-gray url('http://philipschleihauf.ca/Hotlinked/2012/canvas/thanks/thanks.png');
+}
+
+#contact {
+    color: white;
+    background: @dark-gray + #333 url('/static/img/head-grid.svg');
 }
 
 .slider,
@@ -244,25 +261,25 @@ nav {
     }
     h2 {
         margin: 0;
+        font-size: 1.2rem;
+        line-height: 1.1rem;
         text-align: center;
         color: white;
         background: fade(@dark-gray, 60%);
     }
     a {
-        font-size: 1.2rem;
-        line-height: 1.2rem;
         display: block;
-        padding: 0.5rem 0 0.4rem;
+        padding: 0.5em 0 0.4em;
     }
     article {
         padding: 0 1em;
         max-height: 0;
         overflow: hidden;
-        .transition(max-height 0.5s ease);
+        .transition(max-height 0.4s ease);
     }
     .show article {
         max-height: 120em;
-        .transition(max-height 1s linear);
+        .transition(max-height 1s ease-in);
     }
 }
 
@@ -334,22 +351,6 @@ nav {
 
     }
 
-    .middler {
-        position:absolute;
-        display:block;
-        top: 50%;
-        left: 50%;
-        height: @right-nav;
-        line-height: @right-nav;
-        margin-top: -@right-nav / 2;
-        width: 32em;
-        margin-left: -32em / 2;
-        text-align: center;
-    }
-    .rotator {
-        .rotate(90deg);
-    }
-
     .container {
         padding: 1em;
 
@@ -377,31 +378,44 @@ nav {
 
     #what-we-do {
         .slider {
-            height: 32rem;
-            li {
-                border-bottom: 0;
-            }
-            h2 {
-                position: relative;
-                display: block;
-                width: 2.1rem;
-                height: 32rem;
-                float: left;
-                border-left: 1px solid fade(@light-gray, 50%);
-            }
-            .middler {
-                text-align: left;
-                width: 32rem;
-            }
+            margin: 2rem 0;
+        }
+        li {
+            background-position: 50% top;
+            background-size: cover;
+            color: #fff;
             article {
-                display: block;
-                float: left;
-                max-width: 0;
-                height: 32rem;
+                padding: 0;
             }
-            .show article {
-                max-width: 18em;
-                height: 32rem;
+            p {
+                display: block;
+                margin: 0;
+                padding: 1em;
+                background: fade(@dark-gray, 36%);
+            }
+        }
+        #member-learning {
+            background-image: url('/static/img/ml.jpg');
+            &.show p {
+                min-height: 24rem;
+            }
+            p {
+                margin-left: 50%;
+            }
+        }
+        #political-advocacy {
+            background-image: url('/static/img/hsu.jpg');
+            p {
+                margin-top: 18rem;
+            }
+        }
+        #qgic {
+            background-image: url('/static/img/qgic.jpg');
+            &.show p {
+                min-height: 24rem;
+            }
+            p {
+                margin-right: 50%;
             }
         }
     }
@@ -460,6 +474,21 @@ nav {
             &:nth-child(4) a {top: 45%;}
             &:nth-child(5) a {top: 63%;}
             &:nth-child(6) a {top: 81%;}
+        }
+        .middler {
+            position:absolute;
+            display:block;
+            top: 50%;
+            left: 50%;
+            height: @right-nav;
+            line-height: @right-nav;
+            margin-top: -@right-nav / 2;
+            width: 32em;
+            margin-left: -32em / 2;
+            text-align: center;
+        }
+        .rotator {
+            .rotate(90deg);
         }
     }
 

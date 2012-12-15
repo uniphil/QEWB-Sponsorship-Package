@@ -3,7 +3,8 @@
 
   $(function() {
     return $('.slider h2 a').click(function() {
-      $(this).parent().parent().toggleClass('show');
+      $('.slider li').removeClass('show');
+      $(this).parents('li').addClass('show');
       return false;
     });
   });
