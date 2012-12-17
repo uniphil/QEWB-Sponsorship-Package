@@ -228,10 +228,15 @@ nav {
 #events {
     background: @blue;
     border-top: 0.2em dotted white;
+    border-bottom: 0.2em dotted #333;
+    h1 {
+        margin: 1em 0 2em;
+    }
 }
 
 #budget {
     color: white;
+    border-top: 0.2em dotted @blue;
     background: @dark-gray url('http://philipschleihauf.ca/Hotlinked/2012/canvas/thanks/thanks.png');
 }
 
@@ -281,6 +286,51 @@ nav {
         max-height: 120em;
         .transition(max-height 1s ease-in);
     }
+}
+
+
+.simple {
+    border: 0;
+    padding: 0;
+    list-style-type: none;
+    h2 {
+        clear: both;
+        a {
+            color: @dark-gray;
+            text-decoration: none;
+        }
+    }
+    li {
+        border: 0;
+        padding: 0;
+    }
+    img {
+        width: 100%;
+    }
+    .odd img {
+        float: left;
+        margin: 0 1em 1em 0;
+    }
+    .even img {
+        float: right;
+        margin: 0 0 1em 1em;
+    }
+    .clearfix {
+        display: block;
+        margin: 0 0 4rem;
+        width: 100%;
+        padding-top: 1rem;
+        border-bottom: 0.2em dotted white;
+        clear: both;
+    }
+    li:last-child .clearfix {
+        border: 0;
+    }
+}
+
+#pie {
+    height: 480px;
+    width: 640px;
 }
 
 
@@ -419,6 +469,20 @@ nav {
             }
         }
     }
+    .simple {
+        h2 {
+            text-align: center;
+        }
+        .odd h2 {
+            margin-right: 51%;
+        }
+        .even h2 {
+            margin-left: 51%;
+        }
+        img {
+            width: 48%;
+        }
+    }
 }
 
 @media only screen and (min-width: ~"@{wide}px") {
@@ -529,6 +593,17 @@ nav {
 
     #what-we-do {
         box-shadow: inset 0 2em 2em -2em rgba(0, 0, 0, 0.5);
+    }
+
+    .simple {
+        .even h2,
+        .odd h2 {
+            margin-left: 0;
+            margin-right: 0;
+        }
+        img {
+            width: 33.3%;
+        }
     }
 
 }

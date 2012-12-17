@@ -34,14 +34,14 @@ def home(request):
                             'content': 'To make Canada a more pro-development country, Canadian policies need to be altered and regulated. The need for informed Canadian citizens and politicians is what drives the work in EWB advocacy. A main focus within advocacy is improving the Canadian aid sector. We are carrying momentum over from last year\'s successful passing of the International Aid Transparency Initiative (IATI).  Another Non-Government Organization, <em>Publish What You Fund</em>, remarked, "Engineers Without Borders Canada have been working towards this development with impressive campaigning throughout 2011. We congratulate them on keeping up the pressure to realise this huge achievement." Our chapter played an important part in educating the public, signing petitions, and holding a mass advocacy event to engage our student community in Canada\'s foreign aid policy. Queen’s chapter of EWB advocacy is working on building a relationship with Ted Hsu, the Member of Parliament for Kingston and the Islands.  In addition, we are supporting the national EWB advocacy project of getting the Canadian government to pilot a Cash on Delivery aid initiative.',
                         },
                         {
-                            'title': 'Global Engineering',
-                            'slug': 'global-engineering',
-                            'content': 'The mandate of Global Engineering is to maintain and develop relations between Queen’s Engineers Without Borders and the Faculty of  Applied Science and Engineering. Engineers Without Borders believes that an engineer must know how to identify projects that are technically sound, but may be socially flawed and be able to realize the impacts of  his/her decisions. We have sponsored six different first year engineering projects, and have had an impact in the curriculum development and enhancement of our engineering programs at Queen\'s.  As well, Engineers Without Borders is the national provider for National Engineering Month (occurs every March), which promotes globally minded engineering to elementary students, current engineering students and the general public.',
-                        },
-                        {
                             'title': 'Queen\'s Global Innovation Conference',
                             'slug': 'qgic',
                             'content': 'The Queen Global Innovation Conference (QGIC) is in its second year or existence.  It is an unique conference at Queen\'s as it attracts a multi-disciplinary student base who are passionate about global complexities such as climate change, water scarcity, food shortages and energy management. These pressing issues are looked at through a multi-disciplinary lens, and after a successful inaugural year, this conference is continuing with huge momentum.  The conference spans over a weekend, and attracts delegates from a multi-disciplinary background who are passionate about positive change, and solving global complexities.',
+                        },
+                        {
+                            'title': 'Global Engineering',
+                            'slug': 'global-engineering',
+                            'content': 'The mandate of Global Engineering is to maintain and develop relations between Queen’s Engineers Without Borders and the Faculty of  Applied Science and Engineering. Engineers Without Borders believes that an engineer must know how to identify projects that are technically sound, but may be socially flawed and be able to realize the impacts of  his/her decisions. We have sponsored six different first year engineering projects, and have had an impact in the curriculum development and enhancement of our engineering programs at Queen\'s.  As well, Engineers Without Borders is the national provider for National Engineering Month (occurs every March), which promotes globally minded engineering to elementary students, current engineering students and the general public.',
                         },
                         {
                             'title': 'Fair Trade',
@@ -71,14 +71,20 @@ def home(request):
                     'projects': [
                         {
                             'title': 'Run to End Poverty',
+                            'slug': 'R2EP',
+                            'image': 'r2ep.jpg',
                             'content': 'The Run to End Poverty is a Canada wide movement where runners fundraise money to support Engineers Without Border\'s programs.  We participate in our first Run to End Poverty in October 2012 in partnership with the Toronto Marathon.  From the Queen\'s chapter, we sent 18 students down to Toronto not only fundraised money for our chapter, but also raised a lot of awareness about intelligent development and EWB\'s programs.  In total, over 300 EWB members participated in the Toronto run alone, with runs spanning across Canada from Vancouver to St. Johns.',
                         },
                         {
                             'title': 'Pumpkin Smash',
+                            'slug': 'pumpkin-smash',
+                            'image': 'psmash.jpg',
                             'content': 'Pumpkin smash is an annual tradition on the Queen\'s campus where we hoist a giant 1000 lb pumpkin with a crane, and smash it.  This event brings the campus community together and has served as a platform to bring awareness to various issues that EWB chooses to promote each year.  Past examples include promoting the ACT campaign (making aid more accountable, creative and transparent), as well as the International Aid Transparency Initiative (IATI).  This event also serves as a major fundraiser, and continually attracts over 300 students and faculty each year.',
                         },
                         {
                             'title': 'National Conference',
+                            'slug': 'national-conference',
+                            'image': 'natconf.jpg',
                             'content': 'The national conference for Engineers Without Borders occurs annually and brings together over 700 students and professionals to engage in exciting discussions regarding international aid reform, systemic change, and EWB\'s ventures in Africa and Canada.  This is an excellent opportunity for our chapter members to be immersed in an inspiring atmosphere, surrounded by similarly passionate minded delegates from across Canada.',
                         },
                     ],

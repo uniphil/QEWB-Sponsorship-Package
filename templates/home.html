@@ -56,25 +56,35 @@
             <section id="{{ section.slug }}">
                 <div class="container">
                     <h1>{{ section.name }}</h1>
-                    <p>{{ section.content }}</p>
+                    <p>{{ section.content|safe }}</p>
                     {% if section.photo %}
                         <img src="{{ section.photo }}" />
                     {% endif %}
                     {% if section.list %}
                         <ul class="{{ section.list.type }}">
                             {% for project in section.list.projects %}
-                                <li id="{{ project.slug }}">
+                                <li id="{{ project.slug }}" 
+                                    {% if section.list.type == 'slider' %}class="{% cycle 'right' 'bottom' 'left' %} {% if forloop.first %}show{% endif %}"
+                                    {% else %}class="{% cycle 'odd' 'even' %}"{% endif %}
+                                >
                                     <h2>
                                         <a href="#{{ project.slug }}">
                                             {{ project.title }}
                                         </a>
                                     </h2>
                                     <article>
+                                        {% if project.image %}
+                                            <img src="{% static 'img/' %}{{project.image }}" />
+                                        {% endif %}
                                         <p>{{ project.content|safe }}</p>
+                                        <div class="clearfix"></div>
                                     </article>
                                 </li>
                             {% endfor %}
                         </ul>
+                    {% endif %}
+                    {% if section.slug == 'budget' %}
+                        <div id="pie"></div>
                     {% endif %}
                 </div>
                 <div class="clearfix"></div>
@@ -83,6 +93,9 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="{% static 'js/vendor/jquery.js' %}"><\/script>')</script>
+        <script src="{% static 'js/vendor/raphael-min.js' %}"></script>
+        <script src="{% static 'js/vendor/g.raphael-min.js' %}"></script>
+        <script src="{% static 'js/vendor/g.pie-min.js' %}"></script>
         <script src="{% static 'js/main.js' %}"></script>
         <script>
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
