@@ -11,12 +11,18 @@
     r = Raphael('pie');
     pie = r.piechart(320, 240, 100, [37, 32, 19, 7, 5], {
       legend: ['%% Junior Fellow', '%% National Conference', '%% Youth Engagement and Global Engineering', '%% Fair Trade Advocacy', '%% Recruitment/ Administrative'],
+      href: ['#overseas-programs', '#national-conference', '#what-we-do', '#fair-trade'],
       legendpos: 'east',
-      href: ['#overseas-programs', '#national-conference', '#what-we-do', '#fair-trade']
+      legendcolor: '#fff',
+      strokewidth: 2
     });
     return pie.hover(function() {
       this.sector.stop();
       return this.sector.scale(1.1, 1.1, this.cx, this.cy);
+    }, function() {
+      return this.sector.animate({
+        transform: 's1 1 ' + this.cx + ' ' + this.cy
+      }, 100, 'ease');
     });
   });
 
