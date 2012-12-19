@@ -18,11 +18,28 @@
     });
     return pie.hover(function() {
       this.sector.stop();
-      return this.sector.scale(1.1, 1.1, this.cx, this.cy);
+      this.sector.scale(1.1, 1.1, this.cx, this.cy);
+      if (this.label) {
+        this.label[0].stop();
+        this.label[0].attr({
+          r: 7.5
+        });
+        return this.label[1].attr({
+          'font-weight': 800
+        });
+      }
     }, function() {
-      return this.sector.animate({
+      this.sector.animate({
         transform: 's1 1 ' + this.cx + ' ' + this.cy
       }, 100, 'ease');
+      if (this.label) {
+        this.label[0].animate({
+          r: 5
+        }, 100, 'ease');
+        return this.label[1].attr({
+          'font-weight': 400
+        });
+      }
     });
   });
 
