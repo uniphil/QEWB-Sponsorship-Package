@@ -8,8 +8,9 @@
       $(this).parents('li').addClass('show');
       return false;
     });
-    r = Raphael('pie');
-    pie = r.piechart(320, 240, 100, [37, 32, 19, 7, 5], {
+    r = Raphael('pie', '100%', '100%');
+    r.setViewBox(0, 0, 640, 360, true);
+    pie = r.piechart(180, 180, 160, [37, 32, 19, 7, 5], {
       legend: ['%% Junior Fellow', '%% National Conference', '%% Youth Engagement and Global Engineering', '%% Fair Trade Advocacy', '%% Recruitment/ Administrative'],
       href: ['#overseas-programs', '#national-conference', '#what-we-do', '#fair-trade'],
       legendpos: 'east',
