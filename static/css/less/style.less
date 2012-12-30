@@ -48,6 +48,23 @@
         color-stop(0, @g4c)
     );
 }
+.hgradient (@g1c, @g2c, @g2p, @g3c, @g3p, @g4c) {
+    background-image: linear-gradient(right, @g1c 100%, @g2c @g2p, @g3c @g3p, @g4c 0);
+    background-image: -o-linear-gradient(right, @g1c 100%, @g2c @g2p, @g3c @g3p, @g4c 0);
+    background-image: -moz-linear-gradient(right, @g1c 100%, @g2c @g2p, @g3c @g3p, @g4c 0);
+    background-image: -webkit-linear-gradient(right, @g1c 100%, @g2c @g2p, @g3c @g3p, @g4c 0);
+    background-image: -ms-linear-gradient(right, @g1c 100%, @g2c @g2p, @g3c @g3p, @g4c 0);
+
+    background-image: -webkit-gradient(
+        linear,
+        right bottom,
+        left bottom,
+        color-stop(1, @g1c),
+        color-stop(@g2p, @g2c),
+        color-stop(@g3p, @g3c),
+        color-stop(0, @g4c)
+    );
+}
 .border-box {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -238,11 +255,13 @@ nav {
     color: white;
     border-top: 0.2em dotted @blue;
     background: @dark-gray url('http://philipschleihauf.ca/Hotlinked/2012/canvas/thanks/thanks.png');
+    border-bottom: 0.2em solid #777;
 }
 
 #contact {
     color: white;
     background: @dark-gray + #333 url('/static/img/head-grid.svg');
+    .box-shadow(inset 0 1em 3em -1em rgba(0, 0, 0, 0.4));
 }
 
 .slider,
@@ -390,9 +409,12 @@ nav {
             width: 20%;
             float: left;
             border: none;
-            &:hover {
+            &:hover,
+            &.current {
                 background: @nav-back;
                 .transition(background 0.3s ease);
+            }
+            &:hover {
                 text-shadow: 0 0 0.667em black;
             }
         }
@@ -621,6 +643,31 @@ nav {
         padding: 1em @right-nav 0 0;
     }
 }
+
+
+/* ==================
+    JavaScript Stuff
+   ================== */
+
+.js {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    /*
+    #scrollbar {
+        height: 9%;
+        width: 3em;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.3);
+        .hgradient (#484848, #434343, 0.333, #383838, 0.667, #303030);
+        opacity: 0.4;
+    }
+    */
+}
+
+
 
 /* ==========================================================================
    Helper classes

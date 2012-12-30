@@ -2,12 +2,40 @@
 (function() {
 
   $(function() {
-    var pie, r;
+    var current_spot, pie, r, set_spot, spot_links, spots;
     $('.slider h2 a').click(function() {
       $('.slider li').removeClass('show');
       $(this).parents('li').addClass('show');
       return false;
     });
+    spots = $('body').children('header, section');
+    spot_links = $('nav a');
+    current_spot = $(spot_links[0]);
+    set_spot = function(spot) {
+      if (spot !== current_spot) {
+        spot_links.removeClass('current');
+        spot.addClass('current');
+        return current_spot = spot;
+      }
+    };
+    $(document).scroll(function(e) {
+      var current_line, nav_link, spot, view3, _i, _len, _results;
+      view3 = $(window).innerHeight() / 3;
+      current_line = $(document).scrollTop();
+      _results = [];
+      for (_i = 0, _len = spots.length; _i < _len; _i++) {
+        spot = spots[_i];
+        if ((spot.offsetTop + $(spot).height() - view3) > current_line) {
+          nav_link = $('nav a[href=#' + spot.id + ']');
+          set_spot($(nav_link));
+          break;
+        } else {
+          _results.push(void 0);
+        }
+      }
+      return _results;
+    });
+    $('nav a').scrollTo();
     r = Raphael('pie', '100%', '100%');
     r.setViewBox(0, 0, 640, 360, true);
     pie = r.piechart(180, 180, 160, [37, 32, 19, 7, 5], {

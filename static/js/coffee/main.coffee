@@ -1,11 +1,34 @@
 $ ->
 
+  # What we do slider
   $('.slider h2 a').click ->
     $('.slider li').removeClass 'show'
     $(this).parents('li').addClass 'show'
     false
 
+  # Scrollbar position indicator
+  spots = $('body').children('header, section')
+  spot_links = $('nav a')
+  current_spot = $(spot_links[0])
 
+  set_spot = (spot) ->
+    if spot != current_spot
+      spot_links.removeClass 'current'
+      spot.addClass 'current'
+      current_spot = spot
+
+  $(document).scroll (e) ->
+    view3 = $(window).innerHeight() / 3
+    current_line = $(document).scrollTop()
+    for spot in spots
+      if (spot.offsetTop + $(spot).height() - view3) > current_line
+        nav_link = $('nav a[href=#' + spot.id + ']')
+        set_spot $(nav_link)
+        break
+  # Animate scrollbar scrolls
+  $('nav a').scrollTo()
+
+  # Budget Pie Chart
   r = Raphael 'pie', '100%', '100%'
   r.setViewBox 0, 0, 640, 360, true
   pie = r.piechart 180, 180, 160,
