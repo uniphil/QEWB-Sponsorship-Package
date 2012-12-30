@@ -6,10 +6,15 @@ $ ->
     $(this).parents('li').addClass 'show'
     false
 
+  # Sticky Scrollbar for Tablets
+
+
   # Scrollbar position indicator
   spots = $('body').children('header, section')
   spot_links = $('nav a')
+  spot_links.scrollTo()
   current_spot = $(spot_links[0])
+  body_width = 
 
   set_spot = (spot) ->
     if spot != current_spot
@@ -20,13 +25,18 @@ $ ->
   $(document).scroll (e) ->
     view3 = $(window).innerHeight() / 3
     current_line = $(document).scrollTop()
+    if 480 < $('body').width() < 768
+      stick_height = $('hgroup').height()
+      if current_line > stick_height
+        $('nav').addClass 'stick-top'
+      else
+        $('nav').removeClass 'stick-top'
     for spot in spots
       if (spot.offsetTop + $(spot).height() - view3) > current_line
         nav_link = $('nav a[href=#' + spot.id + ']')
         set_spot $(nav_link)
         break
-  # Animate scrollbar scrolls
-  $('nav a').scrollTo()
+
 
   # Budget Pie Chart
   r = Raphael 'pie', '100%', '100%'

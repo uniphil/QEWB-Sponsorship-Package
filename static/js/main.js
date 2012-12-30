@@ -2,7 +2,7 @@
 (function() {
 
   $(function() {
-    var current_spot, pie, r, set_spot, spot_links, spots;
+    var body_width, current_spot, pie, r, set_spot, spot_links, spots;
     $('.slider h2 a').click(function() {
       $('.slider li').removeClass('show');
       $(this).parents('li').addClass('show');
@@ -10,8 +10,9 @@
     });
     spots = $('body').children('header, section');
     spot_links = $('nav a');
+    spot_links.scrollTo();
     current_spot = $(spot_links[0]);
-    set_spot = function(spot) {
+    body_width = set_spot = function(spot) {
       if (spot !== current_spot) {
         spot_links.removeClass('current');
         spot.addClass('current');
@@ -19,9 +20,17 @@
       }
     };
     $(document).scroll(function(e) {
-      var current_line, nav_link, spot, view3, _i, _len, _results;
+      var current_line, nav_link, spot, stick_height, view3, _i, _len, _ref, _results;
       view3 = $(window).innerHeight() / 3;
       current_line = $(document).scrollTop();
+      if ((480 < (_ref = $('body').width()) && _ref < 768)) {
+        stick_height = $('hgroup').height();
+        if (current_line > stick_height) {
+          $('nav').addClass('stick-top');
+        } else {
+          $('nav').removeClass('stick-top');
+        }
+      }
       _results = [];
       for (_i = 0, _len = spots.length; _i < _len; _i++) {
         spot = spots[_i];
@@ -35,7 +44,6 @@
       }
       return _results;
     });
-    $('nav a').scrollTo();
     r = Raphael('pie', '100%', '100%');
     r.setViewBox(0, 0, 640, 360, true);
     pie = r.piechart(180, 180, 160, [37, 32, 19, 7, 5], {

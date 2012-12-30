@@ -390,16 +390,19 @@ nav {
         padding: 5em 1em 4em;
     }
     nav {
+        position: relative;
         width: 100%;
         height: @top-nav;
         line-height: @top-nav;
         background: @nav-back;
         border-bottom: 0.3em solid darken(@orange, 36%);
 
-        &.fixtop {
+        &.stick-top {
             position: fixed;
             top: 0;
             right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            border-bottom: 0.2em solid rgba(0, 0, 0, 0.9);
         }
 
         a {
@@ -428,7 +431,7 @@ nav {
         padding: 1em;
 
         h1 {
-            margin: 1em 0 2em;
+            margin: 5rem 0 2em;
         }
         p {
             padding: 0;
@@ -491,6 +494,10 @@ nav {
                 margin-right: 50%;
             }
         }
+    }
+
+    #events h1 {
+        margin-top: 5rem;
     }
     .simple {
         h2 {
