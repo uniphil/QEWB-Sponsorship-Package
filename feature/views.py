@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 
 def home(request):
     content = {
@@ -105,3 +105,10 @@ def home(request):
         ],
         }
     return render_to_response('home.html', content)
+
+def sendemail(request):
+    if request.method != 'POST':
+        return redirect('/#contact')
+
+    # send the message...
+    return redirect('home')

@@ -87,6 +87,9 @@
                     {% if section.slug == 'budget' %}
                         <div id="pie"></div>
                     {% endif %}
+                    {% if section.slug == 'contact' %}
+                        {% include 'contact.html' %}
+                    {% endif %}
                 </div>
                 <div class="clearfix"></div>
             </section>
