@@ -122,7 +122,7 @@ $ ->
       fill: '#fff'
       opacity: 1
 
-    hint: raph.text(180, 190, 'hover section to see details').attr
+    hint: raph.text(180, 190, 'hover chart to see details').attr
       'font-size': 14
       fill: '#fff'
       opacity: 0.9
