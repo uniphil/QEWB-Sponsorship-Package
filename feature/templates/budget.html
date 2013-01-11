@@ -1,0 +1,17 @@
+<div id="pie-container">
+    <div id="pie">
+    	{% if section.data %}
+	    	<ul id="chart-fallback">
+	    		{% for datum in section.data %}
+	    			<li id="{{ datum.slug }}" data-colour="{{ datum.colour }}">
+	    				<span class="program-name">{{ datum.program }}</span>
+	    				: $
+	    				<span class="program-cost">{{ datum.cost }}</span>
+	    			</li>
+	    		{% endfor %}
+	    	</ul>
+    	{% else %}
+    		<p>hmm... missing data...</p>
+    	{% endif %}
+    </div>
+</div>

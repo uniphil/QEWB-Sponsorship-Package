@@ -85,7 +85,7 @@
                         </ul>
                     {% endif %}
                     {% if section.slug == 'budget' %}
-                        <div id="pie"></div>
+                        {% include 'budget.html' %}
                     {% endif %}
                     {% if section.slug == 'contact' %}
                         {% include 'contact.html' %}

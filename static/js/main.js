@@ -2,7 +2,7 @@
 (function() {
 
   $(function() {
-    var body_width, current_spot, pie, r, set_spot, spot_links, spots;
+    var an_arc, arc_colour, body_width, bright, bulb, colour, current_spot, data, degs, dim, program, raph, set_spot, size, spot_links, spots, start, _i, _len, _ref;
     $('.slider h2 a').click(function() {
       $('.slider li').removeClass('show');
       $(this).parents('li').addClass('show');
@@ -20,16 +20,14 @@
       }
     };
     $(document).scroll(function(e) {
-      var current_line, nav_link, spot, stick_height, view3, _i, _len, _ref, _results;
+      var current_line, nav_link, spot, stick_height, view3, _i, _len, _results;
       view3 = $(window).innerHeight() / 3;
       current_line = $(document).scrollTop();
-      if ((480 < (_ref = $('body').width()) && _ref < 768)) {
-        stick_height = $('hgroup').height();
-        if (current_line > stick_height) {
-          $('nav').addClass('stick-top');
-        } else {
-          $('nav').removeClass('stick-top');
-        }
+      stick_height = $('hgroup').height();
+      if (current_line > stick_height) {
+        $('nav').addClass('stick-top');
+      } else {
+        $('nav').removeClass('stick-top');
       }
       _results = [];
       for (_i = 0, _len = spots.length; _i < _len; _i++) {
@@ -44,39 +42,80 @@
       }
       return _results;
     });
-    r = Raphael('pie', '100%', '100%');
-    r.setViewBox(0, 0, 640, 360, true);
-    pie = r.piechart(180, 180, 160, [37, 32, 19, 7, 5], {
-      legend: ['%% Junior Fellow', '%% National Conference', '%% Youth Engagement and Global Engineering', '%% Fair Trade Advocacy', '%% Recruitment/ Administrative'],
-      href: ['#overseas-programs', '#national-conference', '#what-we-do', '#fair-trade'],
-      legendpos: 'east',
-      legendcolor: '#fff',
-      strokewidth: 2
-    });
-    return pie.hover(function() {
-      this.sector.stop();
-      this.sector.scale(1.1, 1.1, this.cx, this.cy);
-      if (this.label) {
-        this.label[0].stop();
-        this.label[0].attr({
-          r: 7.5
-        });
-        return this.label[1].attr({
-          'font-weight': 800
-        });
-      }
-    }, function() {
-      this.sector.animate({
-        transform: 's1 1 ' + this.cx + ' ' + this.cy
+    bright = function() {
+      this.stop();
+      return this.animate({
+        opacity: 1
+      }, 50, 'ease');
+    };
+    dim = function() {
+      this.stop();
+      return this.animate({
+        opacity: 0.5
       }, 100, 'ease');
-      if (this.label) {
-        this.label[0].animate({
-          r: 5
-        }, 100, 'ease');
-        return this.label[1].attr({
-          'font-weight': 400
-        });
-      }
+    };
+    data = {
+      total: 0
+    };
+    data.programs = $('#chart-fallback li').map(function() {
+      var cost;
+      cost = +$(this).find('.program-cost').text();
+      data.total += cost;
+      return {
+        name: $(this).find('.program-name').text(),
+        slug: $(this).attr('id'),
+        cost: cost
+      };
+    });
+    raph = Raphael('pie', '100%', '100%');
+    raph.setViewBox(0, 0, 360, 360, true);
+    bulb = raph.image('/static/img/bulb.svg', 180 - (106 / 2), 180 - (188 / 2), 106, 188);
+    bulb.attr({
+      opacity: 0.5
+    });
+    bulb.hover(bright, dim);
+    raph.ca.arc = function(x, y, r, start, size, thickness, colour, swidth, stroke) {
+      var R, r_inner, r_outer, rad_end, rad_start, x1, x2, x3, x4, y1, y2, y3, y4;
+      R = r - swidth / 2;
+      r_outer = R;
+      r_inner = r - thickness;
+      rad_start = (start + 32) * Math.PI / 180;
+      rad_end = (start + 32 + size) * Math.PI / 180;
+      x1 = x - r_outer * Math.cos(rad_start);
+      y1 = y - r_outer * Math.sin(rad_start);
+      x2 = x - r_outer * Math.cos(rad_end);
+      y2 = y - r_outer * Math.sin(rad_end);
+      x3 = x - r_inner * Math.cos(rad_end);
+      y3 = y - r_inner * Math.sin(rad_end);
+      x4 = x - r_inner * Math.cos(rad_start);
+      y4 = y - r_inner * Math.sin(rad_start);
+      return {
+        fill: colour,
+        'stroke-width': swidth,
+        stroke: stroke,
+        path: [["M", x1, y1], ["A", r_outer, r_outer, 0, +(size > 180), 1, x2, y2], ["L", x3, y3], ["A", r_inner, r_inner, 0, +(size > 180), 0, x4, y4], ["Z"]]
+      };
+    };
+    start = 0;
+    colour = 0;
+    _ref = data.programs;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      program = _ref[_i];
+      degs = program.cost / data.total * 360;
+      arc_colour = Raphael.hsb(colour / (data.programs.length + 1), 0.5, 0.9);
+      an_arc = raph.path().attr({
+        arc: [180, 180, 180, start, degs, 72, arc_colour, 2, '#000'],
+        opacity: 0.5
+      });
+      an_arc.budget_data = program;
+      an_arc.hover(bright, dim).touchstart(bright).touchend(dim);
+      start += degs;
+      colour += 1;
+    }
+    size = $('#pie-container').width();
+    return $('#pie').css({
+      height: size,
+      width: size
     });
   });
 

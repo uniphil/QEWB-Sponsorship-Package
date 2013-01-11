@@ -254,8 +254,23 @@ nav {
 #budget {
     color: white;
     border-top: 0.2em dotted @blue;
-    background: @dark-gray url('http://philipschleihauf.ca/Hotlinked/2012/canvas/thanks/thanks.png');
+    background: @dark-gray url('/static/img/blackness.png');
     border-bottom: 0.2em solid #777;
+
+    #pie-container {
+        width: 100%;
+        max-width: 360px;
+        margin: 0 auto;
+        #pie {
+            width: 240px;
+            height: 240px;
+            margin: 0 auto;
+        }
+    }
+}
+.js #chart-fallback {
+    // FIXME: add styles for no js
+    display: none;
 }
 
 #contact {
@@ -347,12 +362,6 @@ nav {
     }
 }
 
-#pie {
-    height: 360px;
-    width: 100%;
-    margin: 0 auto;
-}
-
 
 /* ===============
     ALL: IE Fixes
@@ -391,6 +400,7 @@ nav {
     }
     nav {
         position: relative;
+        z-index: 1000;
         width: 100%;
         height: @top-nav;
         line-height: @top-nav;

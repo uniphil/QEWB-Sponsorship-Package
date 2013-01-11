@@ -95,6 +95,38 @@ def home(request):
                 'shortname': 'Budget',
                 'slug': 'budget',
                 'content': 'The Queen\'s Chapter of Engineers Without Borders relies heavily on donations and funds raised by our chapter members.  Our annual budget approaches $20 000; the majority of our funds go to support the junior fellow program, as well our Canadian programs.  We strive to keep administrative and overhead costs low.  The following pie chart is a great visual breakdown of our chapter expenses.',
+                'data': [
+                    {
+                        'program': 'Junior Fellow',
+                        'cost': 7400.00,
+                        'slug': 'budget-jf',
+                        'colour': 'hsl(0, 0.5, 0.9)',
+                    },
+                    {
+                        'program': 'National Conference',
+                        'cost': 6400.00,
+                        'slug': 'budget-conference',
+                        'colour': 'hsl(30, 0.5, 0.9)',
+                    },
+                    {
+                        'program': 'Youth Engagement & Global Engineering',
+                        'cost': 3800.00,
+                        'slug': 'budget-yege',
+                        'colour': 'hsl(60, 0.5, 0.9)',
+                    },
+                    {
+                        'program': 'Fair Trade Advocacy',
+                        'cost': 1400.00,
+                        'slug': 'budget-fairtrade',
+                        'colour': 'hsl(80, 0.5, 0.9)',
+                    },
+                    {
+                        'program': 'Recruitment/ Administrative',
+                        'cost': 1000.00,
+                        'slug': 'budget-admin',
+                        'colour': 'hsl(120, 0.5, 0.9)',
+                    },
+                ],
             },
             {
                 'name': 'Contact Us',

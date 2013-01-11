@@ -5,9 +5,7 @@ $ ->
     $('.slider li').removeClass 'show'
     $(this).parents('li').addClass 'show'
     false
-
-  # Sticky Scrollbar for Tablets
-
+    
 
   # Scrollbar position indicator
   spots = $('body').children('header, section')
@@ -25,12 +23,11 @@ $ ->
   $(document).scroll (e) ->
     view3 = $(window).innerHeight() / 3
     current_line = $(document).scrollTop()
-    if 480 < $('body').width() < 768
-      stick_height = $('hgroup').height()
-      if current_line > stick_height
-        $('nav').addClass 'stick-top'
-      else
-        $('nav').removeClass 'stick-top'
+    stick_height = $('hgroup').height()
+    if current_line > stick_height
+      $('nav').addClass 'stick-top'
+    else
+      $('nav').removeClass 'stick-top'
     for spot in spots
       if (spot.offsetTop + $(spot).height() - view3) > current_line
         nav_link = $('nav a[href=#' + spot.id + ']')
@@ -39,27 +36,74 @@ $ ->
 
 
   # Budget Pie Chart
-  r = Raphael 'pie', '100%', '100%'
-  r.setViewBox 0, 0, 640, 360, true
-  pie = r.piechart 180, 180, 160,
-    [37, 32, 19, 7, 5],
-    legend: ['%% Junior Fellow','%% National Conference', '%% Youth Engagement and Global Engineering', '%% Fair Trade Advocacy', '%% Recruitment/ Administrative']
-    href: ['#overseas-programs', '#national-conference', '#what-we-do', '#fair-trade']
-    legendpos: 'east'
-    legendcolor: '#fff'
-    strokewidth: 2
+  bright = ->
+    this.stop()
+    this.animate opacity: 1, 50, 'ease'
+  dim = ->
+    this.stop()
+    this.animate opacity: 0.5, 100, 'ease'
 
-  pie.hover(
-    ->
-      this.sector.stop()
-      this.sector.scale 1.1, 1.1, this.cx, this.cy
-      if this.label
-        this.label[0].stop()
-        this.label[0].attr r: 7.5
-        this.label[1].attr 'font-weight': 800
-    ->
-      this.sector.animate transform: 's1 1 ' + this.cx + ' ' + this.cy, 100, 'ease'
-      if this.label
-        this.label[0].animate r: 5, 100, 'ease'
-        this.label[1].attr 'font-weight': 400
-  )
+  # get data
+  data =
+    total: 0
+  data.programs =
+    $('#chart-fallback li').map ->
+      cost = +$(this).find('.program-cost').text()
+      data.total += cost
+      name: $(this).find('.program-name').text(),
+      slug: $(this).attr('id'),
+      cost: cost
+
+  # draw the chart
+  raph = Raphael 'pie', '100%', '100%'
+  raph.setViewBox 0, 0, 360, 360, true
+  bulb = raph.image('/static/img/bulb.svg', 180 - (106/2), 180 - (188/2), 106, 188)
+  bulb.attr opacity: 0.5
+  bulb.hover bright, dim
+
+  raph.ca.arc = (x, y, r, start, size, thickness, colour, swidth, stroke) ->
+    R = r - swidth/2
+    r_outer = R
+    r_inner = r - thickness
+    rad_start = (start + 32) * Math.PI / 180
+    rad_end = (start + 32 + size) * Math.PI / 180
+    x1 = x - r_outer * Math.cos(rad_start)
+    y1 = y - r_outer * Math.sin(rad_start)
+    x2 = x - r_outer * Math.cos(rad_end)
+    y2 = y - r_outer * Math.sin(rad_end)
+    x3 = x - r_inner * Math.cos(rad_end)
+    y3 = y - r_inner * Math.sin(rad_end)
+    x4 = x - r_inner * Math.cos(rad_start)
+    y4 = y - r_inner * Math.sin(rad_start)
+    fill: colour,
+    'stroke-width': swidth,
+    stroke: stroke,
+    path: [
+      ["M", x1, y1],
+      ["A", r_outer, r_outer, 0, +(size > 180), 1, x2, y2],
+      ["L", x3, y3],
+      ["A", r_inner, r_inner, 0, +(size > 180), 0, x4, y4],
+      ["Z"]
+    ]
+
+  # draw the arcs
+  start = 0
+  colour = 0
+  for program in data.programs
+    degs = program.cost / data.total * 360
+    arc_colour = Raphael.hsb(colour/(data.programs.length+1), 0.5, 0.9)
+
+    an_arc = raph.path().attr
+      arc: [180, 180, 180, start, degs, 72, arc_colour, 2, '#000']
+      opacity: 0.5
+    an_arc.budget_data = program
+
+    an_arc.hover(bright, dim).touchstart(bright).touchend(dim)
+
+    start += degs
+    colour += 1
+
+  # scale the pie to its container
+  size = $('#pie-container').width()
+  $('#pie').css height: size, width: size
+
