@@ -5,7 +5,7 @@ $ ->
     $('.slider li').removeClass 'show'
     $(this).parents('li').addClass 'show'
     false
-    
+
 
   # Scrollbar position indicator
   spots = $('body').children('header, section')
@@ -36,12 +36,15 @@ $ ->
 
 
   # Budget Pie Chart
-  bright = ->
-    this.stop()
-    this.animate opacity: 1, 50, 'ease'
-  dim = ->
-    this.stop()
-    this.animate opacity: 0.5, 100, 'ease'
+  bright = (what) ->
+    what.stop()
+    what.animate opacity: 1, 50, 'ease'
+  dim = (what) ->
+    what.stop()
+    what.animate opacity: 0.5, 100, 'ease'
+  hide = (what) ->
+    what.stop()
+    what.animate opacity: 0, 50, 'ease'
 
   # get data
   data =
@@ -51,20 +54,23 @@ $ ->
       cost = +$(this).find('.program-cost').text()
       data.total += cost
       name: $(this).find('.program-name').text(),
+      cost: cost,
       slug: $(this).attr('id'),
-      cost: cost
+      colour: $(this).attr('data-colour')
 
   # draw the chart
   raph = Raphael 'pie', '100%', '100%'
   raph.setViewBox 0, 0, 360, 360, true
   bulb = raph.image('/static/img/bulb.svg', 180 - (106/2), 180 - (188/2), 106, 188)
   bulb.attr opacity: 0.5
-  bulb.hover bright, dim
+  bulb.hover(
+    -> bright(this)
+    -> dim(this)
+  )
 
   raph.ca.arc = (x, y, r, start, size, thickness, colour, swidth, stroke) ->
-    R = r - swidth/2
-    r_outer = R
-    r_inner = r - thickness
+    r_outer = r - swidth/2
+    r_inner = r - thickness + swidth/2
     rad_start = (start + 32) * Math.PI / 180
     rad_end = (start + 32 + size) * Math.PI / 180
     x1 = x - r_outer * Math.cos(rad_start)
@@ -89,6 +95,40 @@ $ ->
   # draw the arcs
   start = 0
   colour = 0
+
+  circle_info = {
+    show: (data) ->
+      title = data.name
+      if '&' in title
+        title = title.split('&').join "&\n"
+      if '/' in title
+        title = title.split('/').join("/\n")
+      this.title = raph.text(180, 170, title).attr
+        fill: '#fff',
+        opacity: 1,
+        'font-family': 'Anaheim',
+        'font-size': 20
+        'font-weight': 'bold'
+      this.cost = raph.text(180, 210, "$ ".concat(data.cost)).attr
+        fill: '#fff',
+        opacity: 0.9,
+        'font-size': 20
+        'font-family': 'Anaheim',
+    hide: ->
+      this.title.attr opacity: 0
+      this.cost.attr opacity: 0
+  }
+
+  show_info = ->
+    hide bulb
+    bright this
+    circle_info.show this.budget_data
+
+  hide_info = ->
+    dim bulb
+    dim this
+    circle_info.hide()
+
   for program in data.programs
     degs = program.cost / data.total * 360
     arc_colour = Raphael.hsb(colour/(data.programs.length+1), 0.5, 0.9)
@@ -98,10 +138,11 @@ $ ->
       opacity: 0.5
     an_arc.budget_data = program
 
-    an_arc.hover(bright, dim).touchstart(bright).touchend(dim)
+    an_arc.hover(show_info, hide_info).touchstart(show_info).touchend(hide_info)
 
     start += degs
     colour += 1
+
 
   # scale the pie to its container
   size = $('#pie-container').width()
