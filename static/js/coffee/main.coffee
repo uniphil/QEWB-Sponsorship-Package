@@ -110,11 +110,19 @@ $ ->
       title = data.name
       title = title.split('&').join("&\n").split('/').join("/\n")
 
-      this.title.attr text: title, opacity: 1, 'font-size': 20, fill: '#fff'
-      this.cost.attr opacity: 0.9
-      # this.cost = raph.text(180, 210, "$ ".concat(data.cost)).attr(this.textattr).attr        fill: '#fff',
-      #   opacity: 0.9,
-      #   'font-size': 20
+      this.title.attr
+        text: title
+        opacity: 1
+        'font-size': 20
+        fill: '#fff'
+        'font-family': 'Anaheim',
+      this.cost.attr
+        text: "$ ".concat(data.cost)
+        opacity: 0.9
+        'font-size': 20
+        fill: '#fff'
+        'font-family': 'Anaheim',
+        
     hide: ->
       this.title.attr opacity: 0
       this.cost.attr opacity: 0

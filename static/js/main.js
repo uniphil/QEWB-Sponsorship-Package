@@ -128,10 +128,15 @@
           text: title,
           opacity: 1,
           'font-size': 20,
-          fill: '#fff'
+          fill: '#fff',
+          'font-family': 'Anaheim'
         });
         return this.cost.attr({
-          opacity: 0.9
+          text: "$ ".concat(data.cost),
+          opacity: 0.9,
+          'font-size': 20,
+          fill: '#fff',
+          'font-family': 'Anaheim'
         });
       },
       hide: function() {
