@@ -97,23 +97,21 @@ $ ->
   colour = 0
 
   circle_info = {
+    textattr: {
+      'font-family': 'Anaheim',
+      'font-size': 20
+      fill: '#fff',
+    }
     show: (data) ->
+      this.hide()
       title = data.name
-      if '&' in title
-        title = title.split('&').join "&\n"
-      if '/' in title
-        title = title.split('/').join("/\n")
-      this.title = raph.text(180, 170, title).attr
-        fill: '#fff',
+      title = title.split('&').join("&\n").split('/').join("/\n")
+      this.title = raph.text(180, 170, title).attr(this.textattr).attr
+        'font-weight': 'bold',
         opacity: 1,
-        'font-family': 'Anaheim',
-        'font-size': 20
-        'font-weight': 'bold'
-      this.cost = raph.text(180, 210, "$ ".concat(data.cost)).attr
-        fill: '#fff',
+      this.cost = raph.text(180, 210, "$ ".concat(data.cost)).attr(this.textattr).attr        fill: '#fff',
         opacity: 0.9,
         'font-size': 20
-        'font-family': 'Anaheim',
     hide: ->
       this.title.attr opacity: 0
       this.cost.attr opacity: 0
@@ -138,7 +136,7 @@ $ ->
       opacity: 0.5
     an_arc.budget_data = program
 
-    an_arc.hover(show_info, hide_info).touchstart(show_info).touchend(hide_info)
+    an_arc.hover(show_info, hide_info).touchstart(show_info)
 
     start += degs
     colour += 1
