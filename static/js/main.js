@@ -116,7 +116,6 @@
       },
       show: function(data) {
         var title;
-        this.hide();
         title = data.name;
         title = title.split('&').join("&\n").split('/').join("/\n");
         this.title = raph.text(180, 170, title).attr(this.textattr).attr({
