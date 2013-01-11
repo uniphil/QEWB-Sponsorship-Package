@@ -99,18 +99,22 @@ $ ->
   circle_info = {
     textattr: {
       'font-family': 'Anaheim',
-      'font-size': 20
-      fill: '#fff',
-    }
+      'font-size': 20,
+      fill: '#fff'
+    },
+
+    title: raph.text(180, 170, "title").attr {opacity: 0}
+    cost: raph.text(180, 210, "cost").attr {opacity: 0}
+
     show: (data) ->
       title = data.name
       title = title.split('&').join("&\n").split('/').join("/\n")
-      this.title = raph.text(180, 170, title).attr(this.textattr).attr
-        'font-weight': 'bold',
-        opacity: 1,
-      this.cost = raph.text(180, 210, "$ ".concat(data.cost)).attr(this.textattr).attr        fill: '#fff',
-        opacity: 0.9,
-        'font-size': 20
+
+      this.title.attr text: title, opacity: 1, 'font-size': 20, fill: '#fff'
+      this.cost.attr opacity: 0.9
+      # this.cost = raph.text(180, 210, "$ ".concat(data.cost)).attr(this.textattr).attr        fill: '#fff',
+      #   opacity: 0.9,
+      #   'font-size': 20
     hide: ->
       this.title.attr opacity: 0
       this.cost.attr opacity: 0
