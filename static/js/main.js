@@ -115,9 +115,16 @@
         fill: '#fff'
       },
       title: raph.text(180, 170, "title").attr({
+        'font-family': 'Anaheim',
+        'font-size': 20,
+        'font-weight': 'bold',
+        fill: '#fff',
         opacity: 0
       }),
       cost: raph.text(180, 210, "cost").attr({
+        'font-family': 'Anaheim',
+        'font-size': 20,
+        fill: '#fff',
         opacity: 0
       }),
       show: function(data) {
@@ -126,17 +133,11 @@
         title = title.split('&').join("&\n").split('/').join("/\n");
         this.title.attr({
           text: title,
-          opacity: 1,
-          'font-size': 20,
-          fill: '#fff',
-          'font-family': 'Anaheim'
+          opacity: 1
         });
         return this.cost.attr({
           text: "$ ".concat(data.cost),
-          opacity: 0.9,
-          'font-size': 20,
-          fill: '#fff',
-          'font-family': 'Anaheim'
+          opacity: 0.9
         });
       },
       hide: function() {

@@ -103,8 +103,18 @@ $ ->
       fill: '#fff'
     },
 
-    title: raph.text(180, 170, "title").attr {opacity: 0}
-    cost: raph.text(180, 210, "cost").attr {opacity: 0}
+    title: raph.text(180, 170, "title").attr
+      'font-family': 'Anaheim'
+      'font-size': 20
+      'font-weight': 'bold'
+      fill: '#fff'
+      opacity: 0
+
+    cost: raph.text(180, 210, "cost").attr
+      'font-family': 'Anaheim'
+      'font-size': 20
+      fill: '#fff'
+      opacity: 0
 
     show: (data) ->
       title = data.name
@@ -113,16 +123,11 @@ $ ->
       this.title.attr
         text: title
         opacity: 1
-        'font-size': 20
-        fill: '#fff'
-        'font-family': 'Anaheim',
+
       this.cost.attr
         text: "$ ".concat(data.cost)
         opacity: 0.9
-        'font-size': 20
-        fill: '#fff'
-        'font-family': 'Anaheim',
-        
+
     hide: ->
       this.title.attr opacity: 0
       this.cost.attr opacity: 0
