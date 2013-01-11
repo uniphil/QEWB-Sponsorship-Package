@@ -2,7 +2,7 @@
 (function() {
 
   $(function() {
-    var an_arc, arc_colour, body_width, bright, bulb, circle_info, colour, current_spot, data, degs, dim, hide, hide_info, program, raph, set_spot, show_info, size, spot_links, spots, start, _i, _len, _ref;
+    var an_arc, arc_colour, body_width, bright, bulb, circle_info, colour, current_spot, data, dim, hide, hide_info, program, raph, set_spot, show_info, size, spot_links, spots, start, _i, _len, _ref;
     $('.slider h2 a').click(function() {
       $('.slider li').removeClass('show');
       $(this).parents('li').addClass('show');
@@ -70,7 +70,10 @@
       return {
         name: $(this).find('.program-name').text(),
         cost: cost,
-        slug: $(this).attr('id')
+        slug: $(this).attr('id'),
+        part: function() {
+          return this.cost / data.total;
+        }
       };
     });
     raph = Raphael('pie', '100%', '100%');
@@ -113,15 +116,14 @@
     _ref = data.programs;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       program = _ref[_i];
-      degs = program.cost / data.total * 360;
       arc_colour = Raphael.hsb(colour / (data.programs.length + 1), 0.5, 0.9);
       an_arc = raph.path().attr({
-        arc: [180, 180, 180, start, degs, 72, arc_colour, 2, '#000'],
+        arc: [180, 180, 180, start, program.part() * 360, 72, arc_colour, 2, '#000'],
         opacity: 0.5
       });
       an_arc.budget_data = program;
       an_arc.hover(show_info, hide_info).touchstart(show_info);
-      start += degs;
+      start += program.part() * 360;
       colour += 1;
     }
     circle_info = {
@@ -143,29 +145,41 @@
         fill: '#fff',
         opacity: 0.9
       }),
+      percent: raph.text(180, 230, '').attr({
+        'font-size': 14,
+        fill: '#fff',
+        opacity: 0
+      }),
       show: function(data) {
         this.title.attr({
           text: data.name.split('& ').join("&\n").split('/ ').join("/\n")
         });
+        this.hint.stop();
+        this.hint.animate({
+          opacity: 0
+        }, 200, 'ease');
         this.cost.attr({
           text: "$ ".concat(data.cost)
         });
-        this.hint.stop();
-        return this.hint.animate({
-          opacity: 0
-        }, 200, 'ease');
+        return this.percent.attr({
+          text: ''.concat(Math.round(data.part() * 100, 2), '%'),
+          opacity: 0.9
+        });
       },
       hide: function() {
         this.title.attr({
           text: 'Total Budget'
         });
+        this.hint.stop();
+        this.hint.animate({
+          opacity: 0.667
+        }, 600, 'ease');
         this.cost.attr({
           text: "$ ".concat(data.total)
         });
-        this.hint.stop();
-        return this.hint.animate({
-          opacity: 0.667
-        }, 600, 'ease');
+        return this.percent.attr({
+          opacity: 0
+        });
       }
     };
     size = $('#pie-container').width();

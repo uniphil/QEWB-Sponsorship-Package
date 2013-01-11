@@ -56,6 +56,8 @@ $ ->
       name: $(this).find('.program-name').text(),
       cost: cost,
       slug: $(this).attr('id'),
+      part: ->
+        this.cost / data.total
 
   # draw the chart
   raph = Raphael 'pie', '100%', '100%'
@@ -100,17 +102,16 @@ $ ->
     circle_info.hide()
 
   for program in data.programs
-    degs = program.cost / data.total * 360
     arc_colour = Raphael.hsb(colour/(data.programs.length+1), 0.5, 0.9)
 
     an_arc = raph.path().attr
-      arc: [180, 180, 180, start, degs, 72, arc_colour, 2, '#000']
+      arc: [180, 180, 180, start, program.part() * 360, 72, arc_colour, 2, '#000']
       opacity: 0.5
     an_arc.budget_data = program
 
     an_arc.hover(show_info, hide_info).touchstart(show_info)
 
-    start += degs
+    start += program.part() * 360
     colour += 1
 
   circle_info = {
@@ -132,17 +133,26 @@ $ ->
       fill: '#fff'
       opacity: 0.9
 
+    percent: raph.text(180, 230, '').attr
+      'font-size': 14
+      fill: '#fff'
+      opacity: 0
+
     show: (data) ->
       this.title.attr text: data.name.split('& ').join("&\n").split('/ ').join("/\n")
-      this.cost.attr text: "$ ".concat(data.cost)
       this.hint.stop()
       this.hint.animate opacity: 0, 200, 'ease'
+      this.cost.attr text: "$ ".concat(data.cost)
+      this.percent.attr
+        text: ''.concat(Math.round(data.part() * 100, 2), '%')
+        opacity: 0.9
 
     hide: ->
       this.title.attr text: 'Total Budget'
-      this.cost.attr text: "$ ".concat(data.total)
       this.hint.stop()
       this.hint.animate opacity: 0.667, 600, 'ease'
+      this.cost.attr text: "$ ".concat(data.total)
+      this.percent.attr opacity: 0
   }
 
   # scale the pie to its container
