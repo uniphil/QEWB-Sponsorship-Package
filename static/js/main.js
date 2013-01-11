@@ -70,20 +70,14 @@
       return {
         name: $(this).find('.program-name').text(),
         cost: cost,
-        slug: $(this).attr('id'),
-        colour: $(this).attr('data-colour')
+        slug: $(this).attr('id')
       };
     });
     raph = Raphael('pie', '100%', '100%');
     raph.setViewBox(0, 0, 360, 360, true);
     bulb = raph.image('/static/img/bulb.svg', 180 - (106 / 2), 180 - (188 / 2), 106, 188);
     bulb.attr({
-      opacity: 0.5
-    });
-    bulb.hover(function() {
-      return bright(this);
-    }, function() {
-      return dim(this);
+      opacity: 0.1
     });
     raph.ca.arc = function(x, y, r, start, size, thickness, colour, swidth, stroke) {
       var r_inner, r_outer, rad_end, rad_start, x1, x2, x3, x4, y1, y2, y3, y4;
@@ -108,54 +102,11 @@
     };
     start = 0;
     colour = 0;
-    circle_info = {
-      textattr: {
-        'font-family': 'Anaheim',
-        'font-size': 20,
-        fill: '#fff'
-      },
-      title: raph.text(180, 170, "title").attr({
-        'font-family': 'Anaheim',
-        'font-size': 20,
-        'font-weight': 'bold',
-        fill: '#fff',
-        opacity: 0
-      }),
-      cost: raph.text(180, 210, "cost").attr({
-        'font-family': 'Anaheim',
-        'font-size': 20,
-        fill: '#fff',
-        opacity: 0
-      }),
-      show: function(data) {
-        var title;
-        title = data.name;
-        title = title.split('&').join("&\n").split('/').join("/\n");
-        this.title.attr({
-          text: title,
-          opacity: 1
-        });
-        return this.cost.attr({
-          text: "$ ".concat(data.cost),
-          opacity: 0.9
-        });
-      },
-      hide: function() {
-        this.title.attr({
-          opacity: 0
-        });
-        return this.cost.attr({
-          opacity: 0
-        });
-      }
-    };
     show_info = function() {
-      hide(bulb);
       bright(this);
       return circle_info.show(this.budget_data);
     };
     hide_info = function() {
-      dim(bulb);
       dim(this);
       return circle_info.hide();
     };
@@ -173,6 +124,50 @@
       start += degs;
       colour += 1;
     }
+    circle_info = {
+      title: raph.text(180, 160, 'Total Budget').attr({
+        'font-family': 'Anaheim',
+        'font-size': 20,
+        'font-weight': 'bold',
+        fill: '#fff',
+        opacity: 1
+      }),
+      hint: raph.text(180, 190, 'hover section to see details').attr({
+        'font-size': 14,
+        fill: '#fff',
+        opacity: 0.9
+      }),
+      cost: raph.text(180, 210, "$ ".concat(data.total)).attr({
+        'font-family': 'Anaheim',
+        'font-size': 20,
+        fill: '#fff',
+        opacity: 0.9
+      }),
+      show: function(data) {
+        this.title.attr({
+          text: data.name.split('& ').join("&\n").split('/ ').join("/\n")
+        });
+        this.cost.attr({
+          text: "$ ".concat(data.cost)
+        });
+        this.hint.stop();
+        return this.hint.animate({
+          opacity: 0
+        }, 200, 'ease');
+      },
+      hide: function() {
+        this.title.attr({
+          text: 'Total Budget'
+        });
+        this.cost.attr({
+          text: "$ ".concat(data.total)
+        });
+        this.hint.stop();
+        return this.hint.animate({
+          opacity: 0.667
+        }, 600, 'ease');
+      }
+    };
     size = $('#pie-container').width();
     return $('#pie').css({
       height: size,

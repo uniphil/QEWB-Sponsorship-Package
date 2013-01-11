@@ -56,17 +56,12 @@ $ ->
       name: $(this).find('.program-name').text(),
       cost: cost,
       slug: $(this).attr('id'),
-      colour: $(this).attr('data-colour')
 
   # draw the chart
   raph = Raphael 'pie', '100%', '100%'
   raph.setViewBox 0, 0, 360, 360, true
   bulb = raph.image('/static/img/bulb.svg', 180 - (106/2), 180 - (188/2), 106, 188)
-  bulb.attr opacity: 0.5
-  bulb.hover(
-    -> bright(this)
-    -> dim(this)
-  )
+  bulb.attr opacity: 0.1
 
   raph.ca.arc = (x, y, r, start, size, thickness, colour, swidth, stroke) ->
     r_outer = r - swidth/2
@@ -96,50 +91,11 @@ $ ->
   start = 0
   colour = 0
 
-  circle_info = {
-    textattr: {
-      'font-family': 'Anaheim',
-      'font-size': 20,
-      fill: '#fff'
-    },
-
-    title: raph.text(180, 170, "title").attr
-      'font-family': 'Anaheim'
-      'font-size': 20
-      'font-weight': 'bold'
-      fill: '#fff'
-      opacity: 0
-
-    cost: raph.text(180, 210, "cost").attr
-      'font-family': 'Anaheim'
-      'font-size': 20
-      fill: '#fff'
-      opacity: 0
-
-    show: (data) ->
-      title = data.name
-      title = title.split('&').join("&\n").split('/').join("/\n")
-
-      this.title.attr
-        text: title
-        opacity: 1
-
-      this.cost.attr
-        text: "$ ".concat(data.cost)
-        opacity: 0.9
-
-    hide: ->
-      this.title.attr opacity: 0
-      this.cost.attr opacity: 0
-  }
-
   show_info = ->
-    hide bulb
     bright this
     circle_info.show this.budget_data
 
   hide_info = ->
-    dim bulb
     dim this
     circle_info.hide()
 
@@ -157,6 +113,37 @@ $ ->
     start += degs
     colour += 1
 
+  circle_info = {
+    title: raph.text(180, 160, 'Total Budget').attr
+      'font-family': 'Anaheim'
+      'font-size': 20
+      'font-weight': 'bold'
+      fill: '#fff'
+      opacity: 1
+
+    hint: raph.text(180, 190, 'hover section to see details').attr
+      'font-size': 14
+      fill: '#fff'
+      opacity: 0.9
+
+    cost: raph.text(180, 210, "$ ".concat(data.total)).attr
+      'font-family': 'Anaheim'
+      'font-size': 20
+      fill: '#fff'
+      opacity: 0.9
+
+    show: (data) ->
+      this.title.attr text: data.name.split('& ').join("&\n").split('/ ').join("/\n")
+      this.cost.attr text: "$ ".concat(data.cost)
+      this.hint.stop()
+      this.hint.animate opacity: 0, 200, 'ease'
+
+    hide: ->
+      this.title.attr text: 'Total Budget'
+      this.cost.attr text: "$ ".concat(data.total)
+      this.hint.stop()
+      this.hint.animate opacity: 0.667, 600, 'ease'
+  }
 
   # scale the pie to its container
   size = $('#pie-container').width()

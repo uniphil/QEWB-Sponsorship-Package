@@ -100,33 +100,33 @@ def home(request):
                         'program': 'Junior Fellow',
                         'cost': 7400.00,
                         'slug': 'budget-jf',
-                        'colour': 'hsl(0, 0.5, 0.9)',
                     },
                     {
                         'program': 'National Conference',
                         'cost': 6400.00,
                         'slug': 'budget-conference',
-                        'colour': 'hsl(30, 0.5, 0.9)',
                     },
                     {
                         'program': 'Youth Engagement & Global Engineering',
                         'cost': 3800.00,
                         'slug': 'budget-yege',
-                        'colour': 'hsl(60, 0.5, 0.9)',
                     },
                     {
                         'program': 'Fair Trade Advocacy',
                         'cost': 1400.00,
                         'slug': 'budget-fairtrade',
-                        'colour': 'hsl(80, 0.5, 0.9)',
                     },
                     {
                         'program': 'Recruitment/ Administrative',
                         'cost': 1000.00,
                         'slug': 'budget-admin',
-                        'colour': 'hsl(120, 0.5, 0.9)',
                     },
                 ],
+                'options': {
+                    'title': 'Sponsorship Opportunities',
+                    'slug': 'sponsorship-opportunities',
+                    'content': 'The table below summarizes opportunities for your company to sponsor the Queen\'s Engineers Without Borders, and the benefits you will receive as an organization.'
+                }
             },
             {
                 'name': 'Contact Us',
@@ -135,7 +135,7 @@ def home(request):
                 'content': 'Thank you for taking the time to read through our sponsorship package. If you have any questions or concerns please do not hesitate to contact us. <em>ATTN: Melissa da Cunha</em>',
             },
         ],
-        }
+    }
     return render_to_response('home.html', content)
 
 def sendemail(request):

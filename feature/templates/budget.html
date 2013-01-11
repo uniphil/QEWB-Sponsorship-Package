@@ -3,7 +3,7 @@
     	{% if section.data %}
 	    	<ul id="chart-fallback">
 	    		{% for datum in section.data %}
-	    			<li id="{{ datum.slug }}" data-colour="{{ datum.colour }}">
+	    			<li id="{{ datum.slug }}">
 	    				<span class="program-name">{{ datum.program }}</span>
 	    				: $
 	    				<span class="program-cost">{{ datum.cost }}</span>
@@ -15,3 +15,6 @@
     	{% endif %}
     </div>
 </div>
+
+<h2 id="{{ section.options.slug }}">{{ section.options.title }}</h2>
+<p>{{ section.options.content }}</p>
