@@ -126,41 +126,45 @@ def home(request):
                     'title': 'Sponsorship Opportunities',
                     'slug': 'sponsorship-opportunities',
                     'content': 'The list below summarizes opportunities for your company to sponsor the Queen\'s Engineers Without Borders, and the benefits you will receive as an organization.',
-                    'options': [
+                    'tiers':
                         {
-                            'class': 'Bronze',
-                            'minimum': 500,
-                            'perks': [
-                                'Name on QEWB Website',
-                                'Lunch and Learn',
-                            ],
-                        },
-                        {
-                            'class': 'Silver',
-                            'minimum': 1500,
-                            'perks': [
-                                'Logo in QGIC delegate handbook',
-                                'Four tickets to the Queen\'s Global Innovation Conference',
-                            ],
-                        },
-                        {
-                            'class': 'Gold',
-                            'minimum': 3000,
-                            'perks': [
-                                'Plaque in the Queen\'s EWB Office',
-                                'Logo on shirts and banner at Run to End Poverty',
-                            ],
-                        },
-                        {
-                            'class': 'Platinum',
-                            'minimum': 6000,
-                            'perks': [
-                                'End of year address at Gala',
-                                'Pull cord at Pumpkin Drop',
-                                'Full sponsorship of a Junior Fellow',
-                            ],
-                        },
-                    ],
+                        'title': 'tiers',
+                        'levels': [
+                            {
+                                'class': 'Bronze',
+                                'minimum': 500,
+                                'perks': [
+                                    'Name on QEWB Website',
+                                    'Lunch and Learn',
+                                ],
+                            },
+                            {
+                                'class': 'Silver',
+                                'minimum': 1500,
+                                'perks': [
+                                    'Logo in QGIC delegate handbook',
+                                    'Four tickets to the Queen\'s Global Innovation Conference',
+                                ],
+                            },
+                            {
+                                'class': 'Gold',
+                                'minimum': 3000,
+                                'perks': [
+                                    'Plaque in the Queen\'s EWB Office',
+                                    'Logo on shirts and banner at Run to End Poverty',
+                                ],
+                            },
+                            {
+                                'class': 'Platinum',
+                                'minimum': 6000,
+                                'perks': [
+                                    'End of year address at Gala',
+                                    'Pull cord at Pumpkin Drop',
+                                    'Full sponsorship of a Junior Fellow',
+                                ],
+                            },
+                        ],
+                    },
                 },
             },
             {

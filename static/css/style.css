@@ -23,14 +23,15 @@ nav a:hover{text-decoration:underline;}
 #what-we-do{background:#ffffff url('/static/img/head-grid-dark.svg');border-bottom:0.2em dotted #aaccee;}
 #events{background:#aaccee;border-top:0.2em dotted white;border-bottom:0.2em dotted #333;}#events h1{margin:1em 0 2em;}
 #budget{color:white;border-top:0.2em dotted #aaccee;background:#333333 url('/static/img/blackness.png');border-bottom:0.2em solid #777;}#budget #pie-container{width:100%;max-width:360px;margin:0 auto;}#budget #pie-container #pie{width:240px;height:240px;margin:0 auto;}
+#budget #prospects{position:relative;}#budget #prospects h3{margin:0;line-height:1em;position:absolute;z-index:10;}
 #budget #prospects #prospects-options{background:rgba(64, 64, 64, 0.667);}
-#budget #prospects ul{margin:0 0 0.5rem;padding:0 0.5rem 0.5rem 0;position:relative;border:1px solid rgba(255, 255, 255, 0.5);border-width:0 1px 1px 0;}#budget #prospects ul h3{display:block;margin:0;padding:0.1rem 0.333rem 0;font-weight:normal;font-size:0.8rem;line-height:0.8rem;position:absolute;bottom:-0.5rem;right:1rem;background:black;text-shadow:1px 1px 0 rgba(0, 0, 0, 0.5);}
-#budget #prospects ul>li{font-size:0.9rem;margin:0 0 0 1em;list-style-type:square;}#budget #prospects ul>li:first-child{margin-top:0.5rem;}
-#budget #prospects ul.prospect{border-radius:0 0 3px;}#budget #prospects ul.prospect>h3{border-radius:3px;}
-#budget #prospects ul.prospect.Bronze{border-color:#641;}#budget #prospects ul.prospect.Bronze>h3{background:#641;}
-#budget #prospects ul.prospect.Silver{border-color:#777;}#budget #prospects ul.prospect.Silver>h3{background:#777;}
-#budget #prospects ul.prospect.Gold{border-color:#652;}#budget #prospects ul.prospect.Gold>h3{background:#652;}
-#budget #prospects ul.prospect.Platinum{border-color:#444;}#budget #prospects ul.prospect.Platinum>h3{background:#444;}
+#budget #prospects ul{margin:0.2rem 0 0.5rem;padding:0 0.5rem 0.5rem 0;position:relative;border:1px solid rgba(255, 255, 255, 0.5);border-width:1px 1px 1px 0;border-radius:0 3px 3px 0;}#budget #prospects ul h4{display:block;margin:0;padding:0.1rem 0.333rem 0;font-weight:normal;font-size:0.8rem;line-height:0.8rem;position:absolute;bottom:-0.5rem;right:1rem;background:black;text-shadow:1px 1px 0 rgba(0, 0, 0, 0.5);}
+#budget #prospects ul>li{font-size:0.9rem;line-height:1.1rem;margin:0.4em 0 0.333rem 1em;list-style-type:square;}#budget #prospects ul>li:first-child{margin-top:0.667rem;}
+#budget #prospects ul.prospect>h4{border-radius:3px;}
+#budget #prospects ul.prospect.Bronze{border-color:#641;}#budget #prospects ul.prospect.Bronze>h4{background:#641;}
+#budget #prospects ul.prospect.Silver{border-color:#777;}#budget #prospects ul.prospect.Silver>h4{background:#777;}
+#budget #prospects ul.prospect.Gold{border-color:#652;}#budget #prospects ul.prospect.Gold>h4{background:#652;}
+#budget #prospects ul.prospect.Platinum{border-color:#444;}#budget #prospects ul.prospect.Platinum>h4{background:#444;}
 .js #chart-fallback{display:none;}
 #contact{color:white;background:#666666 url('/static/img/head-grid.svg');-webkit-box-shadow:inset 0 1em 3em -1em rgba(0, 0, 0, 0.4);-moz-box-shadow:inset 0 1em 3em -1em rgba(0, 0, 0, 0.4);box-shadow:inset 0 1em 3em -1em rgba(0, 0, 0, 0.4);}
 .slider,.slider li{padding:0;list-style-type:none;}.slider a,.slider li a{text-decoration:none;color:inherit;}
