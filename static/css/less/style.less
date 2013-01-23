@@ -304,10 +304,22 @@ nav {
             &> h3 {
                 border-radius: 3px;
             }
-            &.Bronze > h3 { background: #641; }
-            &.Silver > h3 { background: #777; }
-            &.Gold > h3 { background: #652; }
-            &.Platinum > h3 { background: #444; }
+            &.Bronze {
+                border-color: #641;
+                &> h3 { background: #641; }
+            }
+            &.Silver {
+                border-color: #777;
+                &> h3 { background: #777; }
+            }
+            &.Gold {
+                border-color: #652;
+                &> h3 { background: #652; }
+            }
+            &.Platinum {
+                border-color: #444;
+                &> h3 { background: #444; }
+            }
         }
     }
 }
