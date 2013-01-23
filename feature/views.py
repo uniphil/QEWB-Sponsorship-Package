@@ -125,7 +125,7 @@ def home(request):
                 'prospects': {
                     'title': 'Sponsorship Opportunities',
                     'slug': 'sponsorship-opportunities',
-                    'content': 'The table below summarizes opportunities for your company to sponsor the Queen\'s Engineers Without Borders, and the benefits you will receive as an organization.',
+                    'content': 'The list below summarizes opportunities for your company to sponsor the Queen\'s Engineers Without Borders, and the benefits you will receive as an organization.',
                     'options': [
                         {
                             'class': 'Bronze',

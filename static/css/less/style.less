@@ -267,11 +267,55 @@ nav {
             margin: 0 auto;
         }
     }
+    #prospects {
+        #prospects-options {
+            background: rgba(64, 64, 64, 0.667);
+        }
+        ul {
+            margin: 0 0 0.5rem;
+            padding: 0 0.5rem 0.5rem 0;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-width: 0 1px 1px 0;
+            h3 {
+                display: block;
+                margin: 0;
+                padding: 0.1rem 0.333rem 0;
+                font-weight: normal;
+                font-size: 0.8rem;
+                line-height: 0.8rem;
+                position: absolute;
+                bottom: -0.5rem;
+                right: 1rem;
+                background: black;
+                text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+            }
+            &> li {
+                font-size: 0.9rem;
+                margin: 0 0 0 1em;
+                list-style-type: square;
+                &:first-child {
+                    margin-top: 0.5rem;
+                }
+            }
+        }
+        ul.prospect {
+            border-radius: 0 0 3px;
+            &> h3 {
+                border-radius: 3px;
+            }
+            &.Bronze > h3 { background: #641; }
+            &.Silver > h3 { background: #777; }
+            &.Gold > h3 { background: #652; }
+            &.Platinum > h3 { background: #444; }
+        }
+    }
 }
 .js #chart-fallback {
     // FIXME: add styles for no js
     display: none;
 }
+
 
 #contact {
     color: white;
