@@ -6,7 +6,7 @@ from livereload.compiler import lessc, coffee
 Task.add('feature/*.py')
 
 # Templates
-Task.add('templates/')
+Task.add('feature/templates/')
 
 # Static assets
 Task.add('static/img/')
