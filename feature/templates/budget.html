@@ -20,7 +20,7 @@
     <h2 id="{{ section.prospects.slug }}">{{ section.prospects.title }}</h2>
     <p>{{ section.prospects.content }}</p>
     <div id="prospects-options">
-        <h3>Tiers</h3>
+        <h3>{{ section.prospects.tiers.title }}</h3>
         {% for prospect in section.prospects.tiers.levels reversed %}
             <ul class="prospect {{ prospect.class }}">
         {% endfor %}

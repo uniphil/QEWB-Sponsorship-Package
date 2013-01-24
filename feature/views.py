@@ -128,7 +128,7 @@ def home(request):
                     'content': 'The list below summarizes opportunities for your company to sponsor the Queen\'s Engineers Without Borders, and the benefits you will receive as an organization.',
                     'tiers':
                         {
-                        'title': 'tiers',
+                        'title': 'Sponsorship Tiers',
                         'levels': [
                             {
                                 'class': 'Bronze',

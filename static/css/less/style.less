@@ -269,11 +269,15 @@ nav {
     }
     #prospects {
         position: relative;
+        h2 {
+            margin: 2em 0 inherit;
+        }
         h3 {
-            margin: 0;
+            margin: -0.1em 0 0 0.5rem;
             line-height: 1em;
             position: absolute;
             z-index: 10;
+            text-shadow: 0 0 1em black;
         }
         #prospects-options {
             background: rgba(64, 64, 64, 0.667);
@@ -284,7 +288,7 @@ nav {
             position: relative;
             border: 1px solid rgba(255, 255, 255, 0.5);
             border-width: 1px 1px 1px 0;
-            border-radius: 0 3px 3px 0;
+            border-radius: 0 4px 4px 0;
             h4 {
                 display: block;
                 margin: 0;
@@ -301,10 +305,10 @@ nav {
             &> li {
                 font-size: 0.9rem;
                 line-height: 1.1rem;
-                margin: 0.4em 0 0.333rem 1em;
+                margin: 0.5em 0 0.333rem 1.5rem;
                 list-style-type: square;
-                &:first-child {
-                    margin-top: 0.667rem;
+                &:first-of-type {
+                    margin-top: 1rem;
                 }
             }
         }
@@ -326,6 +330,7 @@ nav {
             }
             &.Platinum {
                 border-color: #444;
+                border-width: 1px;
                 &> h4 { background: #444; }
             }
         }
