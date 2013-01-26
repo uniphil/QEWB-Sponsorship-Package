@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response, redirect
+from django.template import RequestContext
+from django.core.mail import send_mail
 
 def home(request):
     content = {
@@ -175,11 +177,25 @@ def home(request):
             },
         ],
     }
-    return render_to_response('home.html', content)
+
+    return render_to_response('home.html', content,
+        context_instance=RequestContext(request))
+
 
 def sendemail(request):
+
     if request.method != 'POST':
         return redirect('/#contact')
+
+    from_email = request.REQUEST.get('email')
+    message = request.REQUEST.get('message')
+
+    to_emails = ['uniphil@gmail.com']
+    if request.REQUEST.get('ccme'):
+        to_emails.append(from_email)
+
+    send_mail('[EWB Sponsorship Site]', message,
+        from_email, to_emails, fail_silently=False)
 
     # send the message...
     return redirect('home')

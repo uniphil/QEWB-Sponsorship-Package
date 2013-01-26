@@ -1,5 +1,6 @@
 
 <form id="contact-form" action="/contact" method="post">
+    {% csrf_token %}
     <label for="email">Your mail address</label>
     <input id="contact-email" name="email" type="email" placeholder="you@emailservice.com" />
     <label for="ccme">Send me a copy</label>
@@ -8,6 +9,7 @@
     </textarea>
     <button id="contact-send" name="send" type="submit">Send</button>
 </form>
+
 <section id="social">
     <h3>Social Media</h3>
     <ul>
