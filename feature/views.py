@@ -242,9 +242,9 @@ def home(request):
 
     content = get_content()
 
-    if request.session['contact_content']:
-        content['contact_content'] = request.session.pop('contact_content')
-        
+    if request.session.get('contact_content'):
+        content['msgc'] = request.session.pop('contact_content')
+
     return render_to_response('home.html', content,
         context_instance=RequestContext(request))
 
