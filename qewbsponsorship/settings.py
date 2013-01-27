@@ -3,7 +3,7 @@
 import os
 import dj_database_url
 
-DEBUG = False
+DEBUG = (os.environ.get('DEBUG', 'False') == 'True')
 TEMPLATE_DEBUG = DEBUG
 PROJECT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
