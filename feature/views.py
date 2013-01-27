@@ -219,7 +219,7 @@ def home(request):
         if not quit:
             try:
                 subject = '[EWB Sponsorship Site] {}...'.format(
-                    message[:48].replace('\n', ' '))
+                    message[:48].replace('\n', ' ').replace('\r', ''))
                 send_mail(subject, message,
                     from_email, to_emails,fail_silently=False)
                 messages.add_message(request, messages.SUCCESS,
