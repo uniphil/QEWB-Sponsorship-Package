@@ -7,7 +7,7 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 PROJECT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
-dev_db = 'sqlite://dev-data.sqlite3'
+dev_db = 'sqlite:///dev-data.sqlite3'
 DATABASES = {'default': dj_database_url.config(default=dev_db)}
 
 
@@ -151,6 +151,7 @@ try:
     from local_settings import *
 except ImportError:
     pass
+
 
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = os.environ.get('SENDGRID_USERNAME')
