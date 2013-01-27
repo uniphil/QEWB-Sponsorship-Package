@@ -218,7 +218,8 @@ def home(request):
 
         if not quit:
             try:
-                send_mail('[EWB Sponsorship Site]', message,
+                subject = '[EWB Sponsorship Site] {}...'.format(message[:48])
+                send_mail(subject, message,
                     from_email, to_emails,fail_silently=False)
                 messages.add_message(request, messages.SUCCESS,
                     'Message sent.')
