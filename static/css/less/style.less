@@ -463,7 +463,7 @@ nav {
         &:hover,
         &:focus {
             background: #fff;
-            outline-width: 1px 0 0 0;
+            outline: none;
             border-top: 1px dashed rgba(0, 0, 0, 0.333);
         }
     }
@@ -478,13 +478,16 @@ nav {
             .box-sizing(border-box);
             border: none;
             background: none;
-            height: 8em;
+            height: 21em;
             width: 100%;
             padding: 0.5rem;
             border-top: 1px dashed rgba(0, 0, 0, 0.333);
             margin-bottom: 1rem + 0.333rem + 0.2rem;
             .transition(height, 0.3s, ease);
 
+            &:invalid {
+                height: 8em;
+            }
             &:hover,
             &:focus {
                 background: #fff;
