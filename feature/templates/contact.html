@@ -17,12 +17,12 @@
             <span class="fixed-input"><a href="mailto:queensu@ewb.ca">queensu@ewb.ca</a></span>
         </span>
         <span class="iblock cc">
-            <label for="ccme">Send me a copy</label>
+            <label for="contact-cc">Send me a copy</label>
             <input id="contact-cc" name="ccme" type="checkbox" {% if msgc and msgc.cc_me %}checked="true"{% endif %} />
         </span>
     </div>
     <div class="form-input email">
-        <label for="email" class="text">From</label>
+        <label for="contact-email" class="text">From</label>
         <input {% if msgc %}value={{ msgc.from_email }}{% endif %} id="contact-email" name="email" type="email" placeholder="you@emailservice.com" required="true" />
     </div>
     <div class="form-input message">
