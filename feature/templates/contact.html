@@ -1,13 +1,26 @@
 
-<form id="contact-form" action="/contact" method="post">
-    {% csrf_token %}
-    <label for="email">Your mail address</label>
-    <input id="contact-email" name="email" type="email" placeholder="you@emailservice.com" />
-    <label for="ccme">Send me a copy</label>
-    <input id="contact-cc" name="ccme" type="checkbox" />
-    <textarea id="contact-message" name="message">
-    </textarea>
-    <button id="contact-send" name="send" type="submit">Send</button>
+<form id="contact-form" action="/contact" method="post">{% csrf_token %}
+    <h3>Send us a Message</h3>
+    <div class="form-input">
+        <span class="iblock from">
+            <label class="text to">To</label>
+            <span class="fixed-input"><a href="mailto:queensu@ewb.ca">queensu@ewb.ca</a></span>
+        </span>
+        <span class="iblock">
+            <label for="ccme">Send me a copy</label>
+            <input id="contact-cc" name="ccme" type="checkbox" />
+        </span>
+    </div>
+    <div class="form-input email">
+        <label for="email" class="text">From</label>
+        <input id="contact-email" name="email" type="email" placeholder="you@emailservice.com" />
+    </div>
+    <div class="form-input message">
+        <textarea id="contact-message" name="message"></textarea>
+    </div>
+    <div class="form-input submit">
+        <button id="contact-send" name="send" type="submit">Send Message »</button>
+    </div>
 </form>
 
 <section id="social">
