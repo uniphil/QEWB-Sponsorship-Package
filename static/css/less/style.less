@@ -352,6 +352,12 @@ nav {
     color: white;
     background: @dark-gray + #333 url('../img/head-grid.svg');
     .box-shadow(inset 0 1em 3em -1em rgba(0, 0, 0, 0.4));
+
+    &> .container > p {
+        padding: 0.667rem 0.5rem;
+        .box-shadow(inset 0 0 0.667em 0.1em rgba(0, 0, 0, 0.333));
+        background: rgba(0, 0, 0, 0.2);
+    }
 }
 #contact-form {
     position: relative;
@@ -527,6 +533,9 @@ nav {
         }
     }
 }
+#social {
+}
+
 
 .slider,
 .slider li {
