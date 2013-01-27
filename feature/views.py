@@ -185,7 +185,6 @@ def get_content():
 
 
 def home(request):
-    content = get_content()
 
     if request.method == 'POST':
 
@@ -206,15 +205,15 @@ def home(request):
                     '{} is not a valid email address :|'.format(from_email))
                 quit = True
 
-        if not quit:
-            message = request.REQUEST.get('message')
-            if not message:
-                messages.add_message(request, messages.WARNING,
-                    'No message submitted :|')
-                quit = True
+        message = request.REQUEST.get('message')
+        if not quit and not message:
+            messages.add_message(request, messages.WARNING,
+                'No message submitted :|')
+            quit = True
 
         to_emails = ['uniphil@gmail.com']
-        if request.REQUEST.get('ccme'):
+        cc_me = request.REQUEST.get('ccme')
+        if not quit and cc_me:
             to_emails.append(from_email)
 
         if not quit:
@@ -228,10 +227,24 @@ def home(request):
                     'Something went wrong -- message not sent :(<br/>'\
                     'Try sending an email directly to '\
                     '<a href="mailto:queensu@ewb.ca">queensu@ewb.ca</a>')
+                quit = True
+
+        if quit:
+            # save form state
+            request.session['contact_content'] = {
+                'from_email': from_email,
+                'cc_me': cc_me,
+                'message': message,
+            }
 
         return redirect('/#contact')
 
 
+    content = get_content()
+
+    if request.session['contact_content']:
+        content['contact_content'] = request.session.pop('contact_content')
+        
     return render_to_response('home.html', content,
         context_instance=RequestContext(request))
 
