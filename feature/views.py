@@ -225,7 +225,9 @@ def home(request):
                     'Message sent.')
             except SMTPException:
                 messages.add_message(request, messages.ERROR,
-                    'Something went wrong -- message not sent :(')
+                    'Something went wrong -- message not sent :(<br/>'\
+                    'Try sending an email directly to '\
+                    '<a href="mailto:queensu@ewb.ca">queensu@ewb.ca</a>')
 
         return redirect('/#contact')
 
