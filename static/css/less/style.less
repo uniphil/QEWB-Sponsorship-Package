@@ -217,6 +217,7 @@ nav {
     MOBILE: Main
    ============== */
 
+
 .container {
     padding: 1em;
 
@@ -368,8 +369,47 @@ nav {
         color: @orange;
     }
 
+
+    .messages {
+        margin: 0;
+        padding: 0;
+        background: rgba(0, 0, 0, 0.5);
+        list-style: none;
+        z-index: 1000;
+        font-size: 0.8rem;
+        font-weight: bold;
+
+        li {
+            text-align: center;
+            margin: 0;
+            padding: 0.333rem 0 0.2rem;
+            color: #333;
+            background: rgba(255, 255, 255, 0.75);
+            border-bottom: 0.2rem solid black;
+
+            &.success {
+                color: #373;
+                background: #cfc;
+                border-color: #373;
+            }
+            &.warning {
+                color: #773;
+                background: #ffc;
+                border-color: #773;
+            }
+            &.error {
+                color: #733;
+                background: #fcc;
+                border-color: #733;
+            }
+        }
+    }
+
     .iblock {
         display:inline-block;
+    }
+    .iblock.cc {
+        margin-left: 0.5rem;
     }
 
     label,

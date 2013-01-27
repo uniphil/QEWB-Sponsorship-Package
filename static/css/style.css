@@ -36,7 +36,11 @@ nav a:hover{text-decoration:underline;}
 .js #chart-fallback{display:none;}
 #contact{color:white;background:#666666 url('../img/head-grid.svg');-webkit-box-shadow:inset 0 1em 3em -1em rgba(0, 0, 0, 0.4);-moz-box-shadow:inset 0 1em 3em -1em rgba(0, 0, 0, 0.4);box-shadow:inset 0 1em 3em -1em rgba(0, 0, 0, 0.4);}
 #contact-form{position:relative;border:0.2em solid rgba(0, 0, 0, 0.667);border-radius:0.333rem;color:#333;background:url('../img/white-noise.png');box-shadow:0 0.1em 1em rgba(255, 255, 255, 0.2);}#contact-form h3{margin:0;padding-bottom:0.2em;text-align:center;background:rgba(0, 0, 0, 0.667);color:#ff9900;}
+#contact-form .messages{margin:0;padding:0;background:rgba(0, 0, 0, 0.5);list-style:none;z-index:1000;font-size:0.8rem;font-weight:bold;}#contact-form .messages li{text-align:center;margin:0;padding:0.333rem 0 0.2rem;color:#333;background:rgba(255, 255, 255, 0.75);border-bottom:0.2rem solid black;}#contact-form .messages li.success{color:#373;background:#cfc;border-color:#373;}
+#contact-form .messages li.warning{color:#773;background:#ffc;border-color:#773;}
+#contact-form .messages li.error{color:#733;background:#fcc;border-color:#733;}
 #contact-form .iblock{display:inline-block;}
+#contact-form .iblock.cc{margin-left:0.5rem;}
 #contact-form label,#contact-form #contact-email{line-height:1em;padding:0.333em 0;}
 #contact-form label.text:after{content:":";}
 #contact-form .form-input,#contact-form .fixed-input{font-size:0.8rem;vertical-align:middle;font-weight:bold;vertical-align:baseline;}

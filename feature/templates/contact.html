@@ -1,12 +1,22 @@
 
-<form id="contact-form" action="/contact" method="post">{% csrf_token %}
+<form id="contact-form" action="/" method="post">{% csrf_token %}
     <h3>Send us a Message</h3>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            {{ message|safe }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
     <div class="form-input">
         <span class="iblock from">
             <label class="text to">To</label>
             <span class="fixed-input"><a href="mailto:queensu@ewb.ca">queensu@ewb.ca</a></span>
         </span>
-        <span class="iblock">
+        <span class="iblock cc">
             <label for="ccme">Send me a copy</label>
             <input id="contact-cc" name="ccme" type="checkbox" />
         </span>

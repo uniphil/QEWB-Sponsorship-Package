@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     url(r'^$', 'feature.views.home', name='home'),
     # url(r'^qewbsponsorship/', include('qewbsponsorship.foo.urls')),
 
-    url(r'^contact$', 'feature.views.sendemail', name='sendemail'),
+    # url(r'^contact$', 'feature.views.sendemail', name='sendemail'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

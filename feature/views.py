@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
+from smtplib import SMTPException
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.core.mail import send_mail
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
+from django.contrib import messages
 
-def home(request):
-    content = {
+
+def get_content():
+    return {
         'meta': {
             'title': 'Queen\'s Engineers Without Borders',
             'subtitle': 'Sponsorship Package 2013',
@@ -178,24 +183,53 @@ def home(request):
         ],
     }
 
+
+def home(request):
+    content = get_content()
+
+    if request.method == 'POST':
+
+        quit = False
+
+        # validate email
+        from_email = request.REQUEST.get('email')
+        if not from_email:
+            messages.add_message(request, messages.WARNING,
+                'The <em>From:</em> field is required :|')
+            quit = True
+
+        if not quit:
+            try:
+                validate_email(from_email)
+            except ValidationError:
+                messages.add_message(request, messages.WARNING,
+                    '{} is not a valid email address :|'.format(from_email))
+                quit = True
+
+        if not quit:
+            message = request.REQUEST.get('message')
+            if not message:
+                messages.add_message(request, messages.WARNING,
+                    'No message submitted :|')
+                quit = True
+
+        to_emails = ['uniphil@gmail.com']
+        if request.REQUEST.get('ccme'):
+            to_emails.append(from_email)
+
+        if not quit:
+            try:
+                send_mail('[EWB Sponsorship Site]', message,
+                    from_email, to_emails,fail_silently=False)
+                messages.add_message(request, messages.SUCCESS,
+                    'Message sent.')
+            except SMTPException:
+                messages.add_message(request, messages.ERROR,
+                    'Something went wrong -- message not sent :(')
+
+        return redirect('/#contact')
+
+
     return render_to_response('home.html', content,
         context_instance=RequestContext(request))
 
-
-def sendemail(request):
-
-    if request.method != 'POST':
-        return redirect('/#contact')
-
-    from_email = request.REQUEST.get('email')
-    message = request.REQUEST.get('message')
-
-    to_emails = ['uniphil@gmail.com']
-    if request.REQUEST.get('ccme'):
-        to_emails.append(from_email)
-
-    send_mail('[EWB Sponsorship Site]', message,
-        from_email, to_emails, fail_silently=False)
-
-    # send the message...
-    return redirect('home')
