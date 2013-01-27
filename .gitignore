@@ -6,4 +6,4 @@ local_settings.py
 public/*
 venv
 dev-data.sqlite3
-
+.env
